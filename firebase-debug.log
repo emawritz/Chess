@@ -1,0 +1,168 @@
+[debug] [2025-07-11T15:38:18.260Z] ----------------------------------------------------------------------
+[debug] [2025-07-11T15:38:18.262Z] Command:       /Users/ema/.nvm/versions/node/v22.14.0/bin/node /Users/ema/.npm-global/bin/firebase init
+[debug] [2025-07-11T15:38:18.263Z] CLI Version:   14.2.0
+[debug] [2025-07-11T15:38:18.263Z] Platform:      darwin
+[debug] [2025-07-11T15:38:18.263Z] Node Version:  v22.14.0
+[debug] [2025-07-11T15:38:18.263Z] Time:          Fri Jul 11 2025 12:38:18 GMT-0300 (Argentina Standard Time)
+[debug] [2025-07-11T15:38:18.263Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-07-11T15:38:18.267Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-07-11T15:38:18.267Z] > authorizing via signed-in user (emawritz@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/ema/Desktop/Codigo/Strategy
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2025-07-11T15:38:32.645Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:32.645Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:32.646Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2025-07-11T15:38:32.646Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"chessproducciones","name":"chessproducciones"}
+[debug] [2025-07-11T15:38:33.760Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 200
+[debug] [2025-07-11T15:38:33.760Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"name":"operations/create_project.global.5384492092661037405"}
+[debug] [2025-07-11T15:38:33.761Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:33.761Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:33.761Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5384492092661037405 [none]
+[debug] [2025-07-11T15:38:34.558Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5384492092661037405 200
+[debug] [2025-07-11T15:38:34.559Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5384492092661037405 {"name":"operations/create_project.global.5384492092661037405"}
+[debug] [2025-07-11T15:38:35.108Z] [Project Creation Poller] Retrying task index 0
+[debug] [2025-07-11T15:38:35.146Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:35.147Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:35.147Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5384492092661037405 [none]
+[debug] [2025-07-11T15:38:35.449Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5384492092661037405 200
+[debug] [2025-07-11T15:38:35.449Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5384492092661037405 {"name":"operations/create_project.global.5384492092661037405","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true,"ready":true},"done":true,"response":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.Project","projectNumber":"610229425945","projectId":"chessproducciones","lifecycleState":"ACTIVE","name":"chessproducciones","createTime":"2025-07-11T15:38:34.680691Z"}}
+[debug] [2025-07-11T15:38:35.450Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:35.450Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:35.451Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/chessproducciones:addFirebase [none]
+[debug] [2025-07-11T15:38:39.322Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1beta1/projects/chessproducciones:addFirebase 200
+[debug] [2025-07-11T15:38:39.323Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/chessproducciones:addFirebase {"name":"operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy"}
+[debug] [2025-07-11T15:38:39.323Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:39.323Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:39.325Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy [none]
+[debug] [2025-07-11T15:38:42.802Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy 200
+[debug] [2025-07-11T15:38:42.803Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy {"name":"operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy"}
+[debug] [2025-07-11T15:38:43.304Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2025-07-11T15:38:43.305Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:43.305Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:43.305Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy [none]
+[debug] [2025-07-11T15:38:46.048Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy 200
+[debug] [2025-07-11T15:38:46.049Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy {"name":"operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy"}
+[debug] [2025-07-11T15:38:47.051Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2025-07-11T15:38:47.053Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:47.053Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:47.053Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy [none]
+[debug] [2025-07-11T15:38:47.902Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy 200
+[debug] [2025-07-11T15:38:47.903Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy {"name":"operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy"}
+[debug] [2025-07-11T15:38:49.902Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2025-07-11T15:38:49.905Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:49.905Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:49.906Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy [none]
+[debug] [2025-07-11T15:38:50.469Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy 200
+[debug] [2025-07-11T15:38:50.469Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy {"name":"operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy"}
+[debug] [2025-07-11T15:38:54.470Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2025-07-11T15:38:54.471Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:54.471Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:54.471Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy [none]
+[debug] [2025-07-11T15:38:55.485Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy 200
+[debug] [2025-07-11T15:38:55.485Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy {"name":"operations/workflows/Y2E3NWRlYzUtMmQwMy00ZTA0LTk5NTMtYWUxNGEwNmZiN2Yy","done":true,"response":{"@type":"type.googleapis.com/google.firebase.service.v1beta1.FirebaseProject","projectId":"chessproducciones","projectNumber":"610229425945","displayName":"chessproducciones","name":"projects/chessproducciones","resources":{"hostingSite":"chessproducciones"}}}
+[info] 
+[info] 🎉🎉🎉 Your Firebase project is ready! 🎉🎉🎉
+[info] 
+[info] Project information:
+[info]    - Project ID: chessproducciones
+[info]    - Project Name: chessproducciones
+[info] 
+[info] Firebase console is available at
+[info] https://console.firebase.google.com/project/chessproducciones/overview
+[info] i  Using project chessproducciones (chessproducciones) 
+[info] 
+=== Hosting Setup
+[debug] [2025-07-11T15:38:55.500Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:55.500Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:38:55.501Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/chessproducciones [none]
+[debug] [2025-07-11T15:38:55.987Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/chessproducciones 200
+[debug] [2025-07-11T15:38:55.987Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/chessproducciones {"projectId":"chessproducciones","projectNumber":"610229425945","displayName":"chessproducciones","name":"projects/chessproducciones","resources":{"hostingSite":"chessproducciones"},"state":"ACTIVE","etag":"1_472bbf92-659d-41eb-981e-358b45b58f76"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2025-07-11T15:39:10.224Z] Error: EROFS: read-only file system, open '//404.html'
+    at Object.writeFileSync (node:fs:2426:20)
+    at Object.createFileSync (/Users/ema/.npm-global/lib/node_modules/firebase-tools/node_modules/fs-extra/lib/ensure/file.js:63:6)
+    at Config.writeProjectFile (/Users/ema/.npm-global/lib/node_modules/firebase-tools/lib/config.js:162:12)
+    at Config.askWriteProjectFile (/Users/ema/.npm-global/lib/node_modules/firebase-tools/lib/config.js:192:18)
+    at doSetup (/Users/ema/.npm-global/lib/node_modules/firebase-tools/lib/init/features/hosting/index.js:173:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async init (/Users/ema/.npm-global/lib/node_modules/firebase-tools/lib/init/index.js:41:9)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-07-11T15:45:52.244Z] ----------------------------------------------------------------------
+[debug] [2025-07-11T15:45:52.248Z] Command:       /Users/ema/.nvm/versions/node/v22.14.0/bin/node /Users/ema/.npm-global/bin/firebase init
+[debug] [2025-07-11T15:45:52.249Z] CLI Version:   14.2.0
+[debug] [2025-07-11T15:45:52.249Z] Platform:      darwin
+[debug] [2025-07-11T15:45:52.249Z] Node Version:  v22.14.0
+[debug] [2025-07-11T15:45:52.249Z] Time:          Fri Jul 11 2025 12:45:52 GMT-0300 (Argentina Standard Time)
+[debug] [2025-07-11T15:45:52.249Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-07-11T15:45:52.253Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-07-11T15:45:52.254Z] > authorizing via signed-in user (emawritz@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/ema/Desktop/Codigo/Strategy
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-07-11T15:45:59.519Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:45:59.520Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:45:59.520Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2025-07-11T15:46:00.652Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-07-11T15:46:00.653Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project chessproducciones (chessproducciones) 
+[info] 
+=== Hosting Setup
+[debug] [2025-07-11T15:46:03.461Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:46:03.461Z] Checked if tokens are valid: true, expires at: 1752251862302
+[debug] [2025-07-11T15:46:03.462Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/chessproducciones [none]
+[debug] [2025-07-11T15:46:03.848Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/chessproducciones 200
+[debug] [2025-07-11T15:46:03.849Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/chessproducciones {"projectId":"chessproducciones","projectNumber":"610229425945","displayName":"chessproducciones","name":"projects/chessproducciones","resources":{"hostingSite":"chessproducciones"},"state":"ACTIVE","etag":"1_472bbf92-659d-41eb-981e-358b45b58f76"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2025-07-11T15:46:09.751Z] Error: EROFS: read-only file system, open '//404.html'
+    at Object.writeFileSync (node:fs:2426:20)
+    at Object.createFileSync (/Users/ema/.npm-global/lib/node_modules/firebase-tools/node_modules/fs-extra/lib/ensure/file.js:63:6)
+    at Config.writeProjectFile (/Users/ema/.npm-global/lib/node_modules/firebase-tools/lib/config.js:162:12)
+    at Config.askWriteProjectFile (/Users/ema/.npm-global/lib/node_modules/firebase-tools/lib/config.js:192:18)
+    at doSetup (/Users/ema/.npm-global/lib/node_modules/firebase-tools/lib/init/features/hosting/index.js:173:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async init (/Users/ema/.npm-global/lib/node_modules/firebase-tools/lib/init/index.js:41:9)
+[error] 
+[error] Error: An unexpected error has occurred.

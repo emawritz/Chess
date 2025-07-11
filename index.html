@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Chess</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="assets/img/logo.png" alt="">
+        <!-- <h1 class="sitename">Chess</h1> -->
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">INICIO</a></li>
+          <li><a href="#services">SERVICIOS</a></li>
+          <li><a href="#portfolio">CONOCENOS</a></li>
+          <li><a href="#contact">CONTACTANOS</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+          <div class="hero-pattern"></div>
+    <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 content-col" data-aos="fade-up">
+            <div class="content">
+              <div class="agency-name">
+              </div>
+
+              <div class="main-heading" data-text="CADA MOVIMIENTO CUENTA">
+                <h1>CADA  <br>MOVIMIENTO
+                <br>CUENTA</h1>
+              </div>
+
+
+              <div class="description">
+                <p>Animate al proximo.</p>
+              </div>
+
+              <div class="cta-button">
+                <a href="#services" class="btn">
+                  <span>¡Contactanos!</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5" data-aos="zoom-out" data-aos-delay="2s">
+            <div class="visual-content">
+              <div class="fluid-shape">
+                <img src="assets/img/abstract/abstract-1.png" alt="Abstract Fluid Shape" class="fluid-img">
+              </div>
+              <!-- <div class="stats-card">
+                <div class="stats-number">
+                  <h2>5K</h2>
+                </div>
+                <div class="stats-label">
+                  <p>Successful Campaigns</p>
+                </div>
+                <div class="stats-arrow">
+                  <a href="#portfolio"><i class="bi bi-arrow-up-right"></i></a>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Hero Section -->
+<script>
+    const hero = document.querySelector('.hero');
+    const pattern = document.querySelector('.hero-pattern');
+    
+    // Establecer valores iniciales
+    hero.style.setProperty('--rotateY', '0deg');
+    hero.style.setProperty('--rotateX', '53deg');
+    hero.style.setProperty('--bg-position', '0px');
+    
+    // Animación continua del patrón
+    let animationOffset = 0;
+    let scrollOffset = 0;
+    
+    function animatePattern() {
+      animationOffset += 1; // Velocidad de la animación
+      const totalOffset = animationOffset + scrollOffset;
+      hero.style.setProperty('--bg-position', `${totalOffset}px`);
+      requestAnimationFrame(animatePattern);
+    }
+    
+    // Iniciar la animación inmediatamente
+    animatePattern();
+    
+    // Reacción al mouse
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      
+      hero.style.setProperty('--rotateY', `${x * 10}deg`);
+      hero.style.setProperty('--rotateX', `${53 + y * 5}deg`);
+    });
+    
+    // Reacción al scroll
+    document.addEventListener('scroll', () => {
+      scrollOffset = window.scrollY * 0.5;
+    });
+</script>
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg mt-4 mt-lg-0" data-aos="fade-left" data-aos-delay="300">
+            <div class="about-content">
+              <p class="lead">Somos</p>
+              <h2 style="font-family: 'Pricedown', sans-serif;">CHESS</h2>
+              <p>Una productora <b>audiovisual y creativa</b> que hace que <b>las ideas se muevan</b>.
+                <br>
+              Creamos contenido que <b>se ve, se comparte</b> y (lo más importante) <b>se siente auténtico. </b> 
+                Porque no se trata solo de grabar, editar y entregar.
+                <br>
+                Se trata de entender qué necesita <b>tu marca</b>, como consume <b>tu comunidad</b> y de qué manera podemos contar esa historia para  que no pase <b>desapercibida.</b></p>
+<!-- 
+              <div class="row g-4 mt-3">
+                <div class="col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                  <div class="feature-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <h5>Dedicated Team Support</h5>
+                    <p>Our highly skilled professionals are committed to providing personalized service and impactful solutions on every engagement.</p>
+                  </div>
+                </div>
+                <div class="col-md-6" data-aos="zoom-in" data-aos-delay="450">
+                  <div class="feature-item">
+                    <i class="bi bi-lightbulb-fill"></i>
+                    <h5>Forward-Thinking Approach</h5>
+                    <p>We embrace innovative methodologies to develop unique strategies that drive lasting success.</p>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="patron"  data-aos="fade-down" data-aos-delay="100"></div>
+        <div class="testimonial-section" data-aos="fade-up" data-aos-delay="100" style="border: none !important;">
+          <div class="row">
+            <!-- <div class="col-lg-4" data-aos="fade-right" data-aos-delay="200">
+              <div class="testimonial-intro">
+                <h3>Our Clients Speak Highly</h3>
+                <p>Hear directly from those who have experienced the impact of our partnership and achieved their strategic goals.</p>
+                <div class="swiper-nav-buttons mt-4">
+                  <button class="slider-prev"><i class="bi bi-arrow-left"></i></button>
+                  <button class="slider-next"><i class="bi bi-arrow-right"></i></button>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="col-lg" data-aos="fade-left" data-aos-delay="300">
+              <div class="testimonial-slider swiper init-swiper" >
+                <script type="application/json" class="swiper-config">
+                  {
+                    "loop": true,
+                    "speed": 800,
+                    "autoplay": {
+                      "delay": 2000
+                    },
+                    "slidesPerView": 1,
+                    "spaceBetween": 0,
+                    "navigation": {
+                      "nextEl": ".slider-next",
+                      "prevEl": ".slider-prev"
+                    },
+                    "breakpoints": {
+                      "768": {
+                        "slidesPerView": 4
+                      }
+                    }
+                  }
+                </script>
+                <div class="swiper-wrapper" style="height: 285px !important;">
+                  <div class="swiper-slide">
+                    <div class="testimonial-item">
+                      <img src="/assets/img/WebChess/DSC03997 1.png" alt="">
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <div class="testimonial-item">
+                      <img src="/assets/img/WebChess/IMG_0155 1.png" alt="">
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <div class="testimonial-item">
+                      <img src="/assets/img/WebChess/IMG_7060 1.png" alt="">
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <div class="testimonial-item">
+                      <img src="/assets/img/WebChess/IMG_7789 (1) 1.png" alt="">
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="testimonial-item">
+                      <img src="/assets/img/WebChess/chessproducciones_1752119508115.jpeg" alt="">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="patron" data-aos="fade-down" data-aos-delay="100"></div>
+        
+
+        <div style="    display: flex
+;
+    flex-direction: row;
+    align-items: center; height: 430px;">
+    <div style="width: 60%;">
+
+          <div style="position: relative;">
+            <img src="/assets/img/WebChess/piezas/ChatGPT Image 14 may 2025, 07_46_32 p.m. 1.png" alt="" style="position: absolute;top: -150px;">
+            <img src="/assets/img/WebChess/piezas/ChatGPT Image 14 may 2025, 07_46_32 p.m. 2.png" alt="" style="position: absolute;top: -150px;">
+          </div>
+    </div>
+
+          <div style="width: 87%;">
+            <h4>
+                  Desde un reel de Instagram hasta una campaña completa. 
+        Desde una <strong>producción audiovisual</strong> hasta un evento en vivo. Todo es una oportunidad para hacer un buen movimiento.
+        <br> ¿Jugamos?
+        </h4>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+       <div style="display: flex;justify-content: center;flex-direction: column; align-items: center;">
+         <h1 style="font-family: 'Pricedown', sans-serif;letter-spacing: -1px;font-size: 5rem;">¿CON QUE PODEMOS AYUDARTE?</h1>
+        <p style="font-size: 1.2rem;color: white;font-weight: 600;">
+          ACA NO VENIS A ELEGIR UN SERVICIO PREESTABLECIDO.
+          VENIS A CONTARNOS QUE TENES EN MENTE <br> PARA QUE, TRABAJEMOS JUNTOS, LO TRANSFORMEMOS EN ALGO QUE FUNCIONE Y DESTAQUE.
+        </p>
+        </div>
+      <div class="container section-title" data-aos="fade-up">
+
+        <!-- <h2>Services</h2>
+        <div><span>Check Our</span> <span class="description-title">Services</span></div> -->
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+
+
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6 fluid-shape" >
+            <div class="service-card position-relative z-1" style="height: 70%;" data-aos="fade-up" data-aos-delay="100">
+                <img src="/assets/img/WebChess/Recurso 18.png" data-aos="fade-left"  data-aos-delay="600" alt="" style="width: 270px;" class="fluid-img">
+            </div>
+            <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+            <h4 style="font-weight: bold;">PRODUCCION DE EVENTOS</h4>
+            <p>(CREACION Y PRODUCCION INTEGRAL DE EVENTOS)</p>
+          </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 fluid-shape">
+            <div class="service-card position-relative z-1" data-aos="fade-up" data-aos-delay="100" style="height: 70%;" class="fluid-img">
+              <img src="/assets/img/WebChess/Recurso 19.png" data-aos="fade-down"  data-aos-delay="600" alt="">
+            </div>
+            <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+            <h4 style="font-weight: bold;">PRODUCCION AUDIVISUAL</h4>
+            <p>(FOTOS Y VIDEOS)</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 fluid-shape">
+            <div class="service-card position-relative z-1" data-aos="fade-up" data-aos-delay="100" style="height: 70%;" class="fluid-img">
+              <img src="/assets/img/WebChess/Recurso 16.png" data-aos="fade-right"  data-aos-delay="600" alt="">
+            </div>
+            <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+              <h4 style="font-weight: bold;">INFLUENCER MKT</h4>
+            <p>(SCOUTING DE TALENTOS)</p>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+
+        <br>
+
+        <br>
+
+        <br>
+
+        <br>
+
+        <br>
+
+
+        <br>
+        <h3 style="font-weight: 600;">NUESTROS TRABAJOS</h2>
+          <!-- <div class="row justify-content-center">
+          <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-card position-relative z-1">
+              <div class="service-icon">
+                <i class="bi bi-palette"></i>
+              </div>
+              <a href="service-details.html" class="card-action d-flex align-items-center justify-content-center rounded-circle">
+                <i class="bi bi-arrow-up-right"></i>
+              </a>
+              <h3>
+                <a href="service-details.html">
+                  TV COMPRAS
+                </a>
+              </h3>
+              <p>
+                Nulla facilisi. Maecenas eget magna neque. Suspendisse potenti. Curabitur eleifend nisi non magna vulputate, vel condimentum libero tempus. Proin consectetur feugiat diam.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-card position-relative z-1">
+              <div class="service-icon">
+                <i class="bi bi-gem"></i>
+              </div>
+              <a href="service-details.html" class="card-action d-flex align-items-center justify-content-center rounded-circle">
+                <i class="bi bi-arrow-up-right"></i>
+              </a>
+              <h3>
+                <a href="service-details.html">
+                  JACK DANIEL´S
+                </a>
+              </h3>
+              <p>
+                Praesent euismod varius tellus, vel bibendum nunc interdum at. Donec vehicula diam vel metus venenatis convallis. Aliquam erat volutpat. Etiam viverra magna sit amet.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-card position-relative z-1">
+              <div class="service-icon">
+                <i class="bi bi-megaphone"></i>
+              </div>
+              <a href="service-details.html" class="card-action d-flex align-items-center justify-content-center rounded-circle">
+                <i class="bi bi-arrow-up-right"></i>
+              </a>
+              <h3>
+                <a href="service-details.html">
+                  SPIRIT BLUE
+                </a>
+              </h3>
+              <p>
+                Vivamus tempor velit id magna dictum, sed fermentum nisi faucibus. Integer nec pretium sapien. Fusce tincidunt ligula et purus consequat, ac pellentesque nulla eleifend.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-card position-relative z-1">
+              <div class="service-icon">
+                <i class="bi bi-megaphone"></i>
+              </div>
+              <a href="service-details.html" class="card-action d-flex align-items-center justify-content-center rounded-circle">
+                <i class="bi bi-arrow-up-right"></i>
+              </a>
+              <h3>
+                <a href="service-details.html">
+                  SWELL
+                </a>
+              </h3>
+              <p>
+                Vivamus tempor velit id magna dictum, sed fermentum nisi faucibus. Integer nec pretium sapien. Fusce tincidunt ligula et purus consequat, ac pellentesque nulla eleifend.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-card position-relative z-1">
+              <div class="service-icon">
+                <i class="bi bi-megaphone"></i>
+              </div>
+              <a href="service-details.html" class="card-action d-flex align-items-center justify-content-center rounded-circle">
+                <i class="bi bi-arrow-up-right"></i>
+              </a>
+              <h3>
+                <a href="service-details.html">
+                  JULI PUENTE
+                </a>
+              </h3>
+              <p>
+                Vivamus tempor velit id magna dictum, sed fermentum nisi faucibus. Integer nec pretium sapien. Fusce tincidunt ligula et purus consequat, ac pellentesque nulla eleifend.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-card position-relative z-1">
+              <div class="service-icon">
+                <i class="bi bi-megaphone"></i>
+              </div>
+              <a href="service-details.html" class="card-action d-flex align-items-center justify-content-center rounded-circle">
+                <i class="bi bi-arrow-up-right"></i>
+              </a>
+              <h3>
+                <a href="service-details.html">
+                  REEBOK
+                </a>
+              </h3>
+              <p>
+                Vivamus tempor velit id magna dictum, sed fermentum nisi faucibus. Integer nec pretium sapien. Fusce tincidunt ligula et purus consequat, ac pellentesque nulla eleifend.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Steps Section -->
+
+  </main>
+
+  <footer id="footer" class="footer">
+
+
+    <!-- <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">CHESS producciones </strong> <span>All Rights Reserved</span></p>
+    </div> -->
+
+  </footer> 
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
