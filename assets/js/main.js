@@ -212,4 +212,31 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  // Mostrar sección Producción Audiovisual y ocultar el resto
+  document.querySelectorAll('h4').forEach(el => {
+    if (el.textContent.trim().toUpperCase().includes('PRODUCCION AUDIOVISUAL')) {
+      el.addEventListener('click', function() {
+        // Oculta solo las secciones principales, no el main ni el header/footer
+        document.querySelectorAll('main > section:not(#produccion-audiovisual)').forEach(sec => {
+          sec.style.display = 'none';
+        });
+        document.getElementById('produccion-audiovisual').style.display = 'block';
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      });
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const backBtn = document.querySelector('.produccion-back');
+    if (backBtn) {
+      backBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('produccion-audiovisual').style.display = 'none';
+        document.querySelectorAll('main > section:not(#produccion-audiovisual)').forEach(sec => {
+          sec.style.display = '';
+        });
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      });
+    }
+  });
 })();
