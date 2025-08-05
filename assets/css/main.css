@@ -749,15 +749,6 @@ section,
   position: relative;
 }
 
-.section-title h2::after {
-  content: "";
-  width: 120px;
-  height: 1px;
-  display: inline-block;
-  background: var(--accent-color);
-  margin: 4px 10px;
-}
-
 .section-title div {
   color: var(--heading-color);
   margin: 0;
