@@ -7,26 +7,17 @@
   <title>Chess</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
-
-  <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-
-  <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
 </head>
 
 <body class="index-page">
@@ -59,7 +50,7 @@
           <div class="hero-pattern"></div>
     <div class="hero-overlay"></div>
       <div class="container">
-        <div class="row">
+        <div class="row reverse">
           <div class="col-lg-7 content-col" data-aos="fade-up">
             <div class="content">
               <div class="agency-name">
@@ -104,7 +95,7 @@
         </div>
       </div>
     </section><!-- /Hero Section -->
-<script>
+<!-- <script>
     const hero = document.querySelector('.hero');
     const pattern = document.querySelector('.hero-pattern');
     
@@ -140,9 +131,9 @@
     document.addEventListener('scroll', () => {
       scrollOffset = window.scrollY * 0.5;
     });
-</script>
+</script> -->
     <!-- About Section -->
-    <section id="about" class="about section">
+<section id="about" class="about section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -281,7 +272,9 @@
 
       </div>
 
-    </section><!-- /About Section -->
+    </section>
+    
+    <!-- /About Section -->
 
     <!-- Services Section -->
     <section id="services" class="services section">
@@ -350,7 +343,95 @@
 
 
         <br>
-        <h3 style="font-weight: 600;">NUESTROS TRABAJOS</h2>
+  <section class="portfolio-section">
+        <div class="container">
+            <!-- Section Title -->
+            <div class="section-title fade-in">
+                <h2>Nuestros Trabajos</h2>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="portfolio-grid">
+                <!-- TEVE COMPRAS -->
+                <div class="portfolio-item teve-compras fade-in" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://via.placeholder.com/600x375/e8e8e8/666666?text=TEVE+COMPRAS" alt="Teve Compras" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <div class="play-button">
+                            <i class="bi bi-play-fill"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-title">
+                        <h3>Teve Compras</h3>
+                    </div>
+                </div>
+
+                <!-- JACK DANIEL'S -->
+                <div class="portfolio-item jack-daniels fade-in" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://via.placeholder.com/600x375/1a1a1a/D4AF37?text=JACK+DANIEL'S" alt="Jack Daniel's" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <div class="play-button">
+                            <i class="bi bi-play-fill"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-title">
+                        <h3>Jack Daniel's</h3>
+                    </div>
+                </div>
+
+                <!-- SPIRITU BLU -->
+                <div class="portfolio-item spiritu-blu fade-in" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://via.placeholder.com/600x375/0066cc/00BFFF?text=SPIRITU+BLU" alt="Spiritu Blu" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <div class="play-button">
+                            <i class="bi bi-play-fill"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-title">
+                        <h3>Spiritu Blu</h3>
+                    </div>
+                </div>
+
+                <!-- SWELL -->
+                <div class="portfolio-item swell fade-in" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://via.placeholder.com/600x375/2c5530/ffffff?text=SWELL" alt="Swell" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <div class="play-button">
+                            <i class="bi bi-play-fill"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-title">
+                        <h3>Swell</h3>
+                    </div>
+                </div>
+
+                <!-- JULI PUENTE -->
+                <div class="portfolio-item juli-puente fade-in" data-aos="fade-up" data-aos-delay="500">
+                    <img src="https://via.placeholder.com/600x375/cc0066/FF1493?text=JULI+PUENTE" alt="Juli Puente" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <div class="play-button">
+                            <i class="bi bi-play-fill"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-title">
+                        <h3>Juli Puente</h3>
+                    </div>
+                </div>
+
+                <!-- REEBOK -->
+                <div class="portfolio-item reebok fade-in" data-aos="fade-up" data-aos-delay="600">
+                    <img src="https://via.placeholder.com/600x375/1a1a2e/ffffff?text=REEBOK" alt="Reebok" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <div class="play-button">
+                            <i class="bi bi-play-fill"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-title">
+                        <h3>Reebok</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
           <!-- <div class="row justify-content-center">
           <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-card position-relative z-1">
