@@ -4081,6 +4081,28 @@ section,
   display: none;
 }
 
+#produccion-eventos {
+  width: 100vw;
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  display: none;
+}
+
+#influencer-mkt {
+  width: 100vw;
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  display: none;
+}
+
 .produccion-header {
   background: #000;
   padding-top: 130px; 
@@ -4165,9 +4187,55 @@ section,
   margin-bottom: -50px;
 }
 
+.eventos-title span:first-child {
+  display: block;
+  margin-left: 0;
+  margin-bottom: -50px;
+}
+
 .produccion-title span:last-child {
   display: block;
   margin-left: 140px; 
+}
+
+.eventos-title-block,
+.influencer-title-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.eventos-title,
+.influencer-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  line-height: 1;
+  text-align: left;
+}
+
+.eventos-title span,
+.influencer-title span {
+  display: block;
+}
+
+.influencer-title.inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.influencer-icon-inline {
+  width: 50px;
+  height: auto;
 }
 
 .produccion-desc {

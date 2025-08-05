@@ -212,31 +212,50 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
-  // Mostrar sección Producción Audiovisual y ocultar el resto
+  // Mostrar secciones de producción al hacer clic en los títulos
   document.querySelectorAll('h4').forEach(el => {
     if (el.textContent.trim().toUpperCase().includes('PRODUCCION AUDIOVISUAL')) {
       el.addEventListener('click', function() {
-        // Oculta solo las secciones principales, no el main ni el header/footer
-        document.querySelectorAll('main > section:not(#produccion-audiovisual)').forEach(sec => {
+        document.querySelectorAll('main > section').forEach(sec => {
           sec.style.display = 'none';
         });
         document.getElementById('produccion-audiovisual').style.display = 'block';
         window.scrollTo({top: 0, behavior: 'smooth'});
       });
     }
-  });
-
-  document.addEventListener('DOMContentLoaded', function() {
-    const backBtn = document.querySelector('.produccion-back');
-    if (backBtn) {
-      backBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('produccion-audiovisual').style.display = 'none';
-        document.querySelectorAll('main > section:not(#produccion-audiovisual)').forEach(sec => {
-          sec.style.display = '';
+    if (el.textContent.trim().toUpperCase().includes('PRODUCCION DE EVENTOS')) {
+      el.addEventListener('click', function() {
+        document.querySelectorAll('main > section').forEach(sec => {
+          sec.style.display = 'none';
         });
+        document.getElementById('produccion-eventos').style.display = 'block';
         window.scrollTo({top: 0, behavior: 'smooth'});
       });
     }
+    if (el.textContent.trim().toUpperCase().includes('INFLUENCER MKT')) {
+      el.addEventListener('click', function() {
+        document.querySelectorAll('main > section').forEach(sec => {
+          sec.style.display = 'none';
+        });
+        document.getElementById('influencer-mkt').style.display = 'block';
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      });
+    }
+  });
+
+  // Botón volver para todas las secciones
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.produccion-back').forEach(backBtn => {
+      backBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('main > section').forEach(sec => {
+          sec.style.display = '';
+        });
+        document.getElementById('produccion-audiovisual').style.display = 'none';
+        document.getElementById('produccion-eventos').style.display = 'none';
+        document.getElementById('influencer-mkt').style.display = 'none';
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      });
+    });
   });
 })();
