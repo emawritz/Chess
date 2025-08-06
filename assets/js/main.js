@@ -198,6 +198,16 @@
   function navmenuScrollspy() {
     navmenulinks.forEach(navmenulink => {
       if (!navmenulink.hash) return;
+      
+
+      if (navmenulink.hash === '#hero' || navmenulink.hash === '#services' && 
+          (document.getElementById('produccion-audiovisual').style.display === 'block' || 
+          document.getElementById('produccion-eventos').style.display === 'block' || 
+          document.getElementById('influencer-mkt').style.display === 'block')) {
+        navmenulink.classList.add('active');
+        return;
+      }
+      
       let section = document.querySelector(navmenulink.hash);
       if (!section) return;
       let position = window.scrollY + 200;
@@ -207,55 +217,154 @@
       } else {
         navmenulink.classList.remove('active');
       }
-    })
+    });
   }
+
+  // Función para resetear a la vista principal
+  function resetToMainView(targetSection = null) {
+    document.querySelectorAll('main > section').forEach(sec => {
+      sec.style.display = '';
+    });
+    document.getElementById('produccion-audiovisual').style.display = 'none';
+    document.getElementById('produccion-eventos').style.display = 'none';
+    document.getElementById('influencer-mkt').style.display = 'none';
+    if (!targetSection) {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  }
+
+  // Event listeners para los enlaces del menú
+  navmenulinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        if (document.getElementById('produccion-audiovisual').style.display === 'block' || 
+            document.getElementById('produccion-eventos').style.display === 'block' || 
+            document.getElementById('influencer-mkt').style.display === 'block') {
+          // Si es INICIO o SERVICIOS
+        if (link.hash === '#hero' || link.hash === '#services') {
+          e.preventDefault();
+          resetToMainView(link.hash);
+          
+          // Esperar un breve momento para que se aplique el display:none
+          setTimeout(() => {
+            if (link.hash === '#services') {
+              const servicesSection = document.querySelector('#services');
+              if (servicesSection) {
+                servicesSection.scrollIntoView({behavior: 'smooth'});
+              }
+            }
+          }, 50);
+        }
+      }
+    });
+  });
+
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
-  // Mostrar secciones de producción al hacer clic en los títulos
-  document.querySelectorAll('h4').forEach(el => {
-    if (el.textContent.trim().toUpperCase().includes('PRODUCCION AUDIOVISUAL')) {
-      el.addEventListener('click', function() {
-        document.querySelectorAll('main > section').forEach(sec => {
-          sec.style.display = 'none';
-        });
-        document.getElementById('produccion-audiovisual').style.display = 'block';
-        window.scrollTo({top: 0, behavior: 'smooth'});
-      });
-    }
-    if (el.textContent.trim().toUpperCase().includes('PRODUCCION DE EVENTOS')) {
-      el.addEventListener('click', function() {
-        document.querySelectorAll('main > section').forEach(sec => {
-          sec.style.display = 'none';
-        });
-        document.getElementById('produccion-eventos').style.display = 'block';
-        window.scrollTo({top: 0, behavior: 'smooth'});
-      });
-    }
-    if (el.textContent.trim().toUpperCase().includes('INFLUENCER MKT')) {
-      el.addEventListener('click', function() {
-        document.querySelectorAll('main > section').forEach(sec => {
-          sec.style.display = 'none';
-        });
-        document.getElementById('influencer-mkt').style.display = 'block';
-        window.scrollTo({top: 0, behavior: 'smooth'});
-      });
-    }
-  });
+  /**
+ * Manejo del historial para las secciones de producción
+ */
+let productionHistory = {
+  currentState: null,
+  states: {
+    main: 'main',
+    audiovisual: 'audiovisual',
+    eventos: 'eventos',
+    influencer: 'influencer'
+  }
+};
 
-  // Botón volver para todas las secciones
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.produccion-back').forEach(backBtn => {
-      backBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelectorAll('main > section').forEach(sec => {
-          sec.style.display = '';
-        });
-        document.getElementById('produccion-audiovisual').style.display = 'none';
-        document.getElementById('produccion-eventos').style.display = 'none';
-        document.getElementById('influencer-mkt').style.display = 'none';
-        window.scrollTo({top: 0, behavior: 'smooth'});
-      });
+// Función para actualizar el historial
+function updateHistory(state) {
+  productionHistory.currentState = state;
+  history.pushState({ section: state }, '', state === 'main' ? window.location.pathname : `#${state}`);
+}
+
+// Función para manejar el popstate (botón atrás/adelante)
+window.addEventListener('popstate', function(event) {
+  if (event.state && event.state.section) {
+    handleStateChange(event.state.section);
+  } else {
+    // Si no hay estado (primera carga), ir a main
+    handleStateChange('main');
+  }
+});
+
+// Función para manejar cambios de estado
+function handleStateChange(state) {
+  switch(state) {
+    case productionHistory.states.main:
+      resetToMainView();
+      break;
+    case productionHistory.states.audiovisual:
+      showProductionSection('produccion-audiovisual');
+      break;
+    case productionHistory.states.eventos:
+      showProductionSection('produccion-eventos');
+      break;
+    case productionHistory.states.influencer:
+      showProductionSection('influencer-mkt');
+      break;
+    default:
+      resetToMainView();
+  }
+}
+
+// Función para mostrar sección de producción
+function showProductionSection(sectionId) {
+  document.querySelectorAll('main > section').forEach(sec => {
+    sec.style.display = 'none';
+  });
+  document.getElementById(sectionId).style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// Modificamos los event listeners de las secciones de producción
+document.querySelectorAll('h4').forEach(el => {
+  if (el.textContent.trim().toUpperCase().includes('PRODUCCION AUDIOVISUAL')) {
+    el.addEventListener('click', function() {
+      showProductionSection('produccion-audiovisual');
+      updateHistory(productionHistory.states.audiovisual);
+    });
+  }
+  if (el.textContent.trim().toUpperCase().includes('PRODUCCION DE EVENTOS')) {
+    el.addEventListener('click', function() {
+      showProductionSection('produccion-eventos');
+      updateHistory(productionHistory.states.eventos);
+    });
+  }
+  if (el.textContent.trim().toUpperCase().includes('INFLUENCER MKT')) {
+    el.addEventListener('click', function() {
+      showProductionSection('influencer-mkt');
+      updateHistory(productionHistory.states.influencer);
+    });
+  }
+});
+
+// Modificamos el botón volver
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.produccion-back').forEach(backBtn => {
+    backBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      resetToMainView();
+      updateHistory(productionHistory.states.main);
     });
   });
+});
+
+// Inicializamos el estado al cargar la página
+window.addEventListener('load', function() {
+  if (window.location.hash) {
+    const hash = window.location.hash.substring(1);
+    if (hash === productionHistory.states.audiovisual || 
+        hash === productionHistory.states.eventos || 
+        hash === productionHistory.states.influencer) {
+      handleStateChange(hash);
+    } else {
+      updateHistory(productionHistory.states.main);
+    }
+  } else {
+    updateHistory(productionHistory.states.main);
+  }
+});
 })();
