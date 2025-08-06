@@ -730,37 +730,6 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Global Section Titles
---------------------------------------------------------------*/
-.section-title {
-  padding-bottom: 60px;
-  position: relative;
-}
-
-.section-title h2 {
-  font-size: 14px;
-  font-weight: 500;
-  padding: 0;
-  line-height: 1px;
-  margin: 0;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
-  position: relative;
-}
-
-.section-title div {
-  color: var(--heading-color);
-  margin: 0;
-  margin: 0;
-  font-size: 28px;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-family: var(--heading-font);
-}
-
-
-/*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
    .hero {
@@ -1210,6 +1179,45 @@ section,
                 padding-top: 40px;
                 padding-bottom: 40px;
             }
+            .about .about-content {
+              text-align: center; /* Centramos todo el contenido */
+              padding: 0 20px; /* Añadimos padding lateral */
+            }
+
+            /* Estilo para el párrafo "Somos" */
+            .about .about-content .lead {
+              font-size: 1.8rem !important;
+              color: white !important;
+              font-weight: 600 !important;
+              margin-bottom: 10px !important;
+              height: auto !important;
+              padding: 0 !important;
+              display: block;
+              line-height: 1.2;
+            }
+
+            /* Estilo para el título "CHESS" */
+            .about .about-content h2 {
+              font-size: 4rem !important;
+              height: auto !important;
+              margin: 30px 0 20px 0 !important;
+              line-height: 1.1;
+              letter-spacing: -1px;
+              font-family: 'Pricedown', sans-serif;
+              color: white;
+              text-align: center;
+              display: block;
+              width: 100%;
+            }
+
+            /* Estilo para el párrafo descriptivo */
+            .about .about-content p {
+              font-size: 1.2rem !important;
+              line-height: 1.6 !important;;
+              margin-bottom: 20px !important;
+              text-align: center;
+              padding: 0 15px;
+            }
         }
 
         .about .about-image {
@@ -1269,6 +1277,14 @@ section,
             .about .about-content h2 {
                 font-size: 6rem;
                 height: 120px;
+                justify-content: center;
+                align-items: center;
+            }
+            .about .about-content p {
+                font-size: 1.4rem;
+                line-height: 30px;
+                justify-content: center;
+                align-items: center;
             }
         }
 
@@ -1276,6 +1292,14 @@ section,
             .about .about-content h2 {
                 font-size: 4.5rem;
                 height: 100px;
+                justify-content: center;
+                align-items: center;
+            }
+            .about .about-content p {
+                font-size: 1.2rem;
+                line-height: 26px;
+                justify-content: center;
+                align-items: center;
             }
         }
 
@@ -1283,6 +1307,8 @@ section,
             .about .about-content h2 {
                 font-size: 3.5rem;
                 height: 80px;
+                justify-content: center;
+                align-items: center;
             }
         }
 
@@ -1290,6 +1316,8 @@ section,
             .about .about-content h2 {
                 font-size: 2.5rem;
                 height: 60px;
+                justify-content: center;
+                align-items: center;
             }
         }
 
@@ -1312,12 +1340,16 @@ section,
         @media (max-width: 768px) {
             .about .about-content .lead {
                 font-size: 1.5rem;
+                justify-content: center;
+                align-items: center;
             }
         }
 
         @media (max-width: 480px) {
             .about .about-content .lead {
                 font-size: 1.2rem;
+                justify-content: center;
+                align-items: center;
             }
         }
 
@@ -1326,12 +1358,16 @@ section,
             font-size: 1.4rem;
             line-height: 30px;
             color: white;
+            justify-content: center;
+                align-items: center;
         }
 
         @media (max-width: 768px) {
             .about .about-content p {
                 font-size: 1.2rem;
                 line-height: 26px;
+                justify-content: center;
+                align-items: center;
             }
         }
 
@@ -1517,61 +1553,29 @@ section,
             display: flex;
             flex-direction: row;
             align-items: center;
-            height: 430px;
-        }
-
-        @media (max-width: 991px) {
-            .chess-pieces-section {
-                flex-direction: column;
-                height: auto;
-                padding: 2rem 0;
-            }
+            height: 430px; 
         }
 
         .chess-pieces-container {
-            width: 60%;
-        }
-
-        @media (max-width: 991px) {
-            .chess-pieces-container {
-                width: 100%;
-                order: 2;
-                margin-top: 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .chess-pieces-container {
-                display: none;
-            }
-        }
-
-        .chess-pieces-container div {
+            width: 60%; 
             position: relative;
         }
 
-        .chess-pieces-container img {
-            position: absolute;
-            top: -150px;
+        .chess-pieces-wrapper {
+            position: relative;
+            height: 100%;
         }
 
-        @media (max-width: 991px) {
-            .chess-pieces-container img {
-                top: -50px;
-                max-width: 150px;
-            }
+        .chess-piece {
+            position: absolute;
+            top: -150px;
+            max-width: 100%;
+            height: auto;
         }
 
         .chess-text-container {
-            width: 87%;
-        }
-
-        @media (max-width: 991px) {
-            .chess-text-container {
-                width: 100%;
-                order: 1;
-                text-align: center;
-            }
+            width: 87%; 
+            padding-left: 20px;
         }
 
         .chess-text-container h4 {
@@ -1580,23 +1584,100 @@ section,
             color: white;
         }
 
-        @media (max-width: 768px) {
-            .chess-text-container h4 {
-                font-size: 1.2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .chess-text-container h4 {
-                font-size: 1rem;
-                line-height: 1.4;
-            }
-        }
-
         .chess-text-container strong {
-            color: #1E32F5;
+            color: #000000;
             font-weight: 700;
         }
+
+        /* Tablet (991px o menos) */
+        @media (max-width: 991px) {
+        .chess-pieces-section {
+            flex-direction: row;
+            align-items: center;
+            height: 250px;
+            padding: 20px 15px;
+        }
+        
+        .chess-pieces-container {
+            width: 60%;
+            order: 1; 
+            margin-top: 0;
+        }
+        
+        .chess-piece {
+            position: absolute; 
+            top: 0;
+            max-width: 250px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .chess-piece:nth-child(1) {
+          margin-left: 30px;
+          z-index: 1;
+        }
+
+        .chess-piece:nth-child(2) {
+          margin-left: -100px;
+          z-index: 2;
+        }
+        
+        .chess-text-container {
+            width: 60%; 
+            order: 2;
+            text-align: center; 
+            padding-left: 20px;
+        }
+      }
+
+      /* Móvil (768px o menos) */
+      @media (max-width: 768px) {
+        .chess-pieces-section {
+            flex-direction: column;
+            height: auto;
+            padding: 30px 15px;
+        }
+        
+        .chess-pieces-container {
+            width: 100%;
+            display: block !important; /* Mostramos las imágenes */
+            order: 1;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .chess-piece {
+            position: relative;
+            top: 0;
+            max-width: 120px;
+            margin-right: 15px;
+            display: inline-block !important;
+            vertical-align: middle;
+        }
+        
+        .chess-text-container {
+            width: 100%;
+            order: 2;
+            text-align: center;
+            padding-left: 0;
+        }
+        
+        .chess-text-container h4 {
+            font-size: 1.2rem;
+        }
+      }
+
+      /* Móviles pequeños (480px o menos) */
+      @media (max-width: 480px) {
+        .chess-piece {
+            max-width: 100px;
+        }
+        
+        .chess-text-container h4 {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+      }
 
         /* Navegación del swiper */
         .swiper-nav-buttons {
@@ -4419,15 +4500,6 @@ section,
   box-shadow: 0 12px 40px rgba(30, 50, 245, 0.2); 
 }
 
-
-.section-title h2 {
-  font-size: 2.5rem; 
-  color: white;
-  margin-bottom: 10px;
-  text-align: left;
-  font-weight: 700;
-}
-
 /* Responsive */
 @media (max-width: 992px) {
   .clientes {
@@ -4450,10 +4522,6 @@ section,
   .clientes-section {
     padding: 60px 0 40px 0;
   }
-  
-  .section-title h2 {
-    font-size: 2rem;
-  }
 }
 
 @media (max-width: 600px) {
@@ -4468,11 +4536,6 @@ section,
     padding: 0;
     border-radius: 0;
     display: block;
-  }
-  
-  .section-title h2 {
-    font-size: 1.8rem;
-    text-align: center;
   }
 }
 
@@ -4666,20 +4729,37 @@ section,
     margin-bottom: 4rem;
 }
 
-@media (max-width: 768px) {
-    .section-title {
-        text-align: center;
-        margin-bottom: 3rem;
-    }
-}
 
 .section-title h2 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 800;
     color: var(--default-color);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 2px; /* Valor para desktop */
     margin-bottom: 0;
+    word-spacing: 8px; /* Añadimos espacio entre palabras */
+}
+
+@media (max-width: 991px) {
+    .section-title {
+        margin-top: -15px;
+        text-align: center;
+        margin-bottom: 3rem;
+        letter-spacing: 4px; 
+        word-spacing: 12px; 
+        line-height: 1.3;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        margin-top: -15px;
+        text-align: center;
+        margin-bottom: 3rem;
+        letter-spacing: 4px; 
+        word-spacing: 12px; 
+        line-height: 1.3; 
+    }
 }
 
 /* Portfolio Grid */
