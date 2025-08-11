@@ -320,25 +320,25 @@ function showProductionSection(sectionId) {
 }
 
 // Modificamos los event listeners de las secciones de producción
-document.querySelectorAll('h4').forEach(el => {
-  if (el.textContent.trim().toUpperCase().includes('PRODUCCION AUDIOVISUAL')) {
-    el.addEventListener('click', function() {
-      showProductionSection('produccion-audiovisual');
-      updateHistory(productionHistory.states.audiovisual);
-    });
-  }
-  if (el.textContent.trim().toUpperCase().includes('PRODUCCION DE EVENTOS')) {
-    el.addEventListener('click', function() {
-      showProductionSection('produccion-eventos');
-      updateHistory(productionHistory.states.eventos);
-    });
-  }
-  if (el.textContent.trim().toUpperCase().includes('INFLUENCER MKT')) {
-    el.addEventListener('click', function() {
-      showProductionSection('influencer-mkt');
-      updateHistory(productionHistory.states.influencer);
-    });
-  }
+document.querySelectorAll('.service-card-wrapper').forEach(el => {
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', function() {
+    let section = this.getAttribute('data-section');
+    switch(section) {
+      case 'audiovisual':
+        showProductionSection('produccion-audiovisual');
+        updateHistory(productionHistory.states.audiovisual);
+        break;
+      case 'eventos':
+        showProductionSection('produccion-eventos');
+        updateHistory(productionHistory.states.eventos);
+        break;
+      case 'influencer':
+        showProductionSection('influencer-mkt');
+        updateHistory(productionHistory.states.influencer);
+        break;
+    }
+  });
 });
 
 // Modificamos el botón volver
@@ -367,4 +367,50 @@ window.addEventListener('load', function() {
     updateHistory(productionHistory.states.main);
   }
 });
+
+emailjs.init({
+    publicKey: "RO46AoxV4bTlxbdnj"
+}); 
+
+const modal = document.getElementById("contactModal");
+const openBtn = document.querySelector(".contactanos-btn");
+const closeBtn = document.querySelector(".close-modal");
+const form = document.getElementById("contactForm");
+const formMessage = document.getElementById("formMessage");
+
+openBtn.addEventListener("click", () => {
+  window.scrollTo(0, 0);
+  modal.style.display = "block";
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  emailjs.send("service_4iym4bi", "template_ba0kfvs", {
+    from_name: form.name.value,
+    from_email: form.email.value,
+    message: form.message.value,
+    to_email: "camilaiarahess@gmail.com"
+  }).then(() => {
+    formMessage.style.display = "block";
+    form.reset();
+    setTimeout(() => {
+      modal.style.display = "none";
+      formMessage.style.display = "none";
+    }, 2000);
+  }, (error) => {
+    alert("Error al enviar el mensaje: " + JSON.stringify(error));
+  });
+});
+
 })();
