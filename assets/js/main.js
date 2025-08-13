@@ -23,42 +23,45 @@
   window.addEventListener('load', toggleScrolled);
 
   /**
-   * Mobile nav toggle
-   */
-  const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+ * Mobile nav toggle
+ */
+const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+const navmenu = document.querySelector('#navmenu');
 
-  function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
+function mobileNavToogle() {
+    // Alternar la clase en el body
+    document.body.classList.toggle('mobile-nav-active');
+    
+    // Alternar icono del botón
     mobileNavToggleBtn.classList.toggle('bi-list');
     mobileNavToggleBtn.classList.toggle('bi-x');
-  }
-  if (mobileNavToggleBtn) {
-    mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
-  }
+    
+    // Alternar visibilidad del menú
+    const navUl = navmenu.querySelector('ul');
+    if (document.body.classList.contains('mobile-nav-active')) {
+        navUl.style.display = 'block';
+    } else {
+        navUl.style.display = 'none';
+    }
+}
 
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) {
+if (mobileNavToggleBtn) {
+    mobileNavToggleBtn.addEventListener('click', function(e) {
+        e.preventDefault();
         mobileNavToogle();
-      }
     });
+}
 
-  });
-
-  /**
-   * Toggle mobile nav dropdowns
-   */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
+/**
+ * Cerrar menú al hacer clic en enlace
+ */
+document.querySelectorAll('#navmenu a').forEach(navmenu => {
+    navmenu.addEventListener('click', () => {
+        if (document.body.classList.contains('mobile-nav-active')) {
+            mobileNavToogle();
+        }
     });
-  });
+});
 
   /**
    * Preloader
@@ -351,6 +354,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+
 
 // Inicializamos el estado al cargar la página
 window.addEventListener('load', function() {
