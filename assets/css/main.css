@@ -160,7 +160,7 @@ h6 {
     color: var(--default-color);
   padding: 20px 0;
   transition: all 0.5s;
-  z-index: 997;
+  z-index: 1000;
       position: fixed;
     top: 0;
     left: 0;
@@ -361,6 +361,76 @@ border-radius: 50px;
     margin-right: 10px;
     cursor: pointer;
     transition: color 0.3s;
+    position: relative; /* Añadido para mejor control */
+    top: 2px; /* Ajuste fino de posición vertical */
+  }
+
+  .mobile-nav-active .navmenu {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .mobile-nav-active .mobile-nav-toggle {
+    color: #fff;
+    position: absolute;
+    font-size: 32px;
+    top: 18px; /* Ajustado de 15px a 18px */
+    right: 15px;
+    margin-right: 0;
+    z-index: 9999;
+    top: 2px; /* Mantiene la misma posición que el estado inicial */
+  }
+
+  /* Menú móvil ajustado al contenido */
+  .mobile-nav-active .navmenu ul {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 40px; /* Ajusta según altura de tu header */
+    left: 20px;
+    right: 20px;
+    bottom: auto; /* Quitamos bottom fijo */
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    z-index: 9998;
+    overflow-y: visible; /* Cambiamos a visible */
+    max-height: calc(100vh - 100px); /* Máximo alto pero se ajustará al contenido */
+    width: calc(100% - 40px); /* Ancho con márgenes */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  }
+
+  /* Items del menú más compactos */
+  .mobile-nav-active .navmenu ul li {
+    margin: 8px 0;
+  }
+
+  /* Enlaces más compactos */
+  .mobile-nav-active .navmenu ul li a {
+    color: white !important;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Botón de contacto ajustado */
+  .mobile-nav-active .navmenu ul li a.contactanos-btn {
+    margin-top: 15px;
+    padding: 8px 20px !important;
+    font-size: 1rem;
+  }
+
+  /* Ajuste fino para pantallas muy pequeñas */
+  @media (max-height: 700px) {
+    .mobile-nav-active .navmenu ul {
+      top: 60px;
+      padding: 10px;
+    }
+    
+    .mobile-nav-active .navmenu ul li a {
+      padding: 8px 12px;
+      font-size: 1rem;
+    }
   }
 
   .navmenu {
@@ -481,6 +551,15 @@ border-radius: 50px;
     font-size: 32px;
     top: 15px;
     right: 15px;
+    margin-right: 0;
+    z-index: 9999;
+  }
+  .mobile-nav-toggle.bi-x {
+    color: #fff;
+    position: absolute;
+    font-size: 32px;
+    top: 5px;
+    right: 10px;
     margin-right: 0;
     z-index: 9999;
   }
@@ -782,7 +861,7 @@ section,
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 0;
+  z-index: 1;
   perspective: 1000px;
   overflow: hidden;
   padding: 2rem 0;
@@ -5512,7 +5591,6 @@ z-index: 2;
 
   .footer-img img {
     max-height: 130px;
-
   }
 }
 
@@ -5533,5 +5611,148 @@ z-index: 2;
 
   .footer-info p {
     font-size: 0.8rem;
+  }
+}
+
+/* Carrusel responsive */
+@media (max-width: 1172px) and (min-width: 992px) {
+  .testimonial-slider .swiper-wrapper {
+    height: 240px !important;
+  }
+  
+  .testimonial-item img {
+    height: 240px;
+    object-fit: cover;
+  }
+  
+  .patron {
+    margin: 1rem 0;
+    height: 30px;
+  }
+}
+
+/* Carrusel - Mantener tamaño fijo y eliminar separación */
+@media (max-width: 1174px) and (min-width: 768px) {
+  .testimonial-slider .swiper-wrapper {
+    height: 285px !important; /* Mantener altura fija */
+  }
+
+  .footer-img {
+    max-height: 130px;
+    z-index: 1000;
+  }
+  
+  .testimonial-item img {
+    height: 285px !important; /* Altura fija */
+    width: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+  
+  .patron {
+    margin: 0 !important; /* Eliminar margen */
+    height: 40px;
+    position: relative;
+    top: -15px; /* Acercar al carrusel */
+    display: block !important;
+  }
+  
+  .testimonial-section {
+    margin-top: -25px !important;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .testimonial-slider .swiper-wrapper {
+    height: 200px !important;
+  }
+
+  /* Estilo para el título "CHESS" */
+  .about .about-content h2 {
+    font-size: 4rem !important;
+    height: auto !important;
+    margin: 30px 0 20px 0 !important;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    font-family: 'Pricedown', sans-serif;
+    color: white;
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
+
+  .about .about-content .lead {
+    font-size: 1.8rem !important;
+    color: white !important;
+    font-weight: 600 !important;
+    margin-bottom: 10px !important;
+    height: auto !important;
+    padding: 0 !important;
+    display: block;
+    line-height: 1.2;
+  }
+  
+  .testimonial-item img {
+    height: 200px;
+  }
+  
+  .patron {
+    margin: 0.8rem 0;
+    height: 25px;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 481px) {
+  .testimonial-slider .swiper-wrapper {
+    height: 180px !important;
+  }
+  
+  .testimonial-item img {
+    height: 180px;
+  }
+  
+  .patron {
+    margin: 0.5rem 0;
+    height: 20px;
+  }
+  
+  /* Ajuste específico para el espacio entre patrones y carrusel */
+  .testimonial-section {
+    margin-top: -10px !important;
+    margin-bottom: -10px !important;
+  }
+}
+
+@media (max-width: 992px) and (min-width: 480px) {
+  .hero .content-col {
+    padding-top: 10px;
+  }
+  
+  .hero .main-heading h1 {
+    margin-top: 20px; /* Espacio adicional para el título */
+  }
+}
+
+@media (max-width: 993px) and (min-width: 768px) {
+  .chess-pieces-section {
+    height: 320px; /* Ajustamos la altura */
+    margin-top: 40px;
+    padding: 30px 0;
+    align-items: flex-start; /* Alineamos al inicio (izquierda) */
+  }
+
+  .chess-pieces-section .chess-piece {
+    margin-left: 50px;
+  }
+
+  .chess-pieces-section .chess-text-container {
+    margin-left: -40px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Eliminar el margen inferior del último carousel */
+  .mobile-gallery-carousel:last-of-type {
+    margin-bottom: 0 !important;
   }
 }

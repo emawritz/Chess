@@ -22,46 +22,47 @@
   document.addEventListener('scroll', toggleScrolled);
   window.addEventListener('load', toggleScrolled);
 
-  /**
- * Mobile nav toggle
+ /**
+ * Mobile nav toggle - Versión corregida
  */
-const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
-const navmenu = document.querySelector('#navmenu');
+  const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+  const navmenu = document.querySelector('#navmenu');
+  const body = document.querySelector('body');
 
-function mobileNavToogle() {
-    // Alternar la clase en el body
-    document.body.classList.toggle('mobile-nav-active');
+  function toggleMobileNav() {
+    // Alternar clases en el body
+    body.classList.toggle('mobile-nav-active');
     
     // Alternar icono del botón
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
+    mobileNavToggle.classList.toggle('bi-list');
+    mobileNavToggle.classList.toggle('bi-x');
     
-    // Alternar visibilidad del menú
-    const navUl = navmenu.querySelector('ul');
-    if (document.body.classList.contains('mobile-nav-active')) {
-        navUl.style.display = 'block';
-    } else {
-        navUl.style.display = 'none';
-    }
-}
+    // Forzar el redibujado del menú (solución para algunos navegadores)
+    navmenu.style.display = 'none';
+    navmenu.offsetHeight; // Trigger reflow
+    navmenu.style.display = 'block';
+  }
 
-if (mobileNavToggleBtn) {
-    mobileNavToggleBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        mobileNavToogle();
+  // Evento para el botón de toggle
+  if (mobileNavToggle) {
+    mobileNavToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      toggleMobileNav();
     });
-}
+  }
 
-/**
- * Cerrar menú al hacer clic en enlace
- */
-document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-        if (document.body.classList.contains('mobile-nav-active')) {
-            mobileNavToogle();
+  // Cerrar menú al hacer clic en enlaces (excepto el de contacto)
+  document.querySelectorAll('#navmenu a').forEach(navLink => {
+    navLink.addEventListener('click', (e) => {
+      if (!navLink.classList.contains('contactanos-btn')) {
+        if (body.classList.contains('mobile-nav-active')) {
+          toggleMobileNav();
         }
+      } else {
+        e.preventDefault(); // Prevenir comportamiento por defecto solo para contacto
+      }
     });
-});
+  });
 
   /**
    * Preloader
@@ -355,8 +356,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-
-
 // Inicializamos el estado al cargar la página
 window.addEventListener('load', function() {
   if (window.location.hash) {
@@ -579,5 +578,21 @@ document.addEventListener('DOMContentLoaded', function() {
       e.stopPropagation();
   });
 });
+
+// Detectar Safari en Mac para aplicar fixes específicos
+if (navigator.userAgent.includes('Macintosh') && 
+    navigator.userAgent.includes('Safari') && 
+    !navigator.userAgent.includes('Chrome')) {
+  document.documentElement.classList.add('mac-safari');
+  
+  // Fix para el hero section
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    hero.style.height = window.innerHeight + 'px';
+    window.addEventListener('resize', () => {
+      hero.style.height = window.innerHeight + 'px';
+    });
+  }
+}
 
 })();
