@@ -373,14 +373,17 @@ emailjs.init({
 }); 
 
 const modal = document.getElementById("contactModal");
-const openBtn = document.querySelector(".contactanos-btn");
+const openBtns = document.querySelectorAll(".contactanos-btn");
 const closeBtn = document.querySelector(".close-modal");
 const form = document.getElementById("contactForm");
 const formMessage = document.getElementById("formMessage");
 
-openBtn.addEventListener("click", () => {
-  window.scrollTo(0, 0);
-  modal.style.display = "block";
+openBtns.forEach(openBtn => {
+  openBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo(0, 0);
+    modal.style.display = "block";
+  });
 });
 
 closeBtn.addEventListener("click", () => {
@@ -410,6 +413,165 @@ form.addEventListener("submit", function(e) {
     }, 2000);
   }, (error) => {
     alert("Error al enviar el mensaje: " + JSON.stringify(error));
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Elementos del modal
+  const videoModal = document.getElementById('videoModal');
+  const modalVideoPlayer = document.getElementById('modalVideoPlayer');
+  const videoLoadingSpinner = document.getElementById('videoLoadingSpinner');
+  const closeVideoModal = document.getElementById('closeVideoModal');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const progressContainer = document.getElementById('progressContainer');
+  const progressBar = document.getElementById('progressBar');
+  const timeDisplay = document.getElementById('timeDisplay');
+  let lastScrollY = 0; // para guardar la posición previa
+
+  // Obtener todos los items del portfolio que tienen video
+  const portfolioItems = document.querySelectorAll('.portfolio-item[data-video-src]');
+
+  portfolioItems.forEach(item => {
+      const playButton = item.querySelector('.play-button');
+      const videoSrc = item.dataset.videoSrc;
+
+      
+      function showVideoModal() {
+        lastScrollY = window.scrollY; // guardar posición antes de abrir
+        window.scrollTo(0, 0); // mover al tope
+        videoLoadingSpinner.classList.add('active');
+        videoModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // bloquear scroll
+        
+        setTimeout(() => {
+          modalVideoPlayer.src = videoSrc;
+
+          modalVideoPlayer.addEventListener('canplay', function onCanPlay() {
+              videoLoadingSpinner.classList.remove('active');
+              modalVideoPlayer.play();
+              modalVideoPlayer.removeEventListener('canplay', onCanPlay);
+          });
+
+          modalVideoPlayer.addEventListener('error', function onError() {
+              videoLoadingSpinner.classList.remove('active');
+              alert('Error al cargar el video');
+              hideVideoModal();
+              modalVideoPlayer.removeEventListener('error', onError);
+          });
+        }, 2000);
+      }
+      
+      // Event listener para el botón de play
+      if (playButton) {
+          playButton.addEventListener('click', function(e) {
+              e.stopPropagation();
+              showVideoModal();
+          });
+      }
+  });
+
+  // Función para ocultar el modal de video
+  function hideVideoModal() {
+      modalVideoPlayer.pause();
+      modalVideoPlayer.removeAttribute('src');
+      modalVideoPlayer.load();
+      videoModal.classList.remove('active');
+      videoLoadingSpinner.classList.remove('active');
+      document.body.style.overflow = ''; // Restaurar scroll del body
+      window.scrollTo(0, lastScrollY); // volver a la posición previa
+      playPauseBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+      progressBar.style.width = '0%';
+      timeDisplay.textContent = '0:00 / 0:00';
+  }
+  
+  // Función para formatear tiempo
+  function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+  }
+  
+  // Función para actualizar la barra de progreso
+  function updateProgress() {
+      if (modalVideoPlayer.duration) {
+          const progress = (modalVideoPlayer.currentTime / modalVideoPlayer.duration) * 100;
+          progressBar.style.width = progress + '%';
+          
+          const current = formatTime(modalVideoPlayer.currentTime);
+          const duration = formatTime(modalVideoPlayer.duration);
+          timeDisplay.textContent = `${current} / ${duration}`;
+      }
+  }
+
+  // Ajustar object-fit basado en orientación del video
+  modalVideoPlayer.addEventListener('loadedmetadata', () => {
+      if (modalVideoPlayer.videoHeight > modalVideoPlayer.videoWidth) {
+          // Vertical
+          modalVideoPlayer.style.objectFit = 'contain';
+      } else {
+          // Horizontal
+          modalVideoPlayer.style.objectFit = 'contain';
+      }
+  });
+  
+  // Event Listeners del modal
+  
+  // Cerrar modal
+  closeVideoModal.addEventListener('click', function(e) {
+      e.stopPropagation();
+      hideVideoModal();
+  });
+
+  // Cerrar modal al hacer clic fuera del contenido
+  videoModal.addEventListener('click', function(e) {
+      if (e.target === videoModal) {
+          hideVideoModal();
+      }
+  });
+  
+  // Play/Pause toggle
+  playPauseBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (modalVideoPlayer.paused) {
+          modalVideoPlayer.play();
+          playPauseBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+      } else {
+          modalVideoPlayer.pause();
+          playPauseBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+      }
+  });
+  
+  // Actualizar progreso
+  modalVideoPlayer.addEventListener('timeupdate', updateProgress);
+  
+  // Seek en la barra de progreso
+  progressContainer.addEventListener('click', function(e) {
+      const rect = progressContainer.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const percentage = clickX / width;
+      
+      if (modalVideoPlayer.duration) {
+          modalVideoPlayer.currentTime = percentage * modalVideoPlayer.duration;
+      }
+  });
+  
+  // Cuando el video termina
+  modalVideoPlayer.addEventListener('ended', function() {
+      playPauseBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+      progressBar.style.width = '100%';
+  });
+  
+  // Manejar tecla Escape para cerrar modal
+  document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+          hideVideoModal();
+      }
+  });
+
+  // Prevenir cierre del modal al hacer clic en el contenido del video
+  document.querySelector('.video-modal-content').addEventListener('click', function(e) {
+      e.stopPropagation();
   });
 });
 
