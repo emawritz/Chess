@@ -359,11 +359,16 @@
           <div class="container">
             <div class="clientes">
               <div class="section-title fade-in">
-                    <h2>Clientes</h2>
-                </div>
-                <div class ="clientes-feed">
-                  <img src="/assets/img/WebChess/clientes.webp" alt="Cliente 1" class="cliente-logo">
-                </div>
+                <h2>Clientes</h2>
+              </div>
+              <div class="clientes-feed">
+                <!-- Reemplazamos la imagen por video -->
+                <video autoplay loop muted playsinline class="cliente-logo">
+                  <source src="/assets/video/logos.mp4" type="video/mp4">
+                  <!-- Fallback para navegadores que no soportan video -->
+                  <img src="/assets/img/WebChess/clientes.webp" alt="Clientes">
+                </video>
+              </div>
             </div>
           </div>
         </section>
@@ -421,9 +426,6 @@
             <div class="eventos-gallery-grid">
               <!-- Fila 1 -->
               <div class="eventos-row eventos-row-3">
-                <div class="gallery-title-overlay-l">
-                  <h2>FOREVENTS</h2>
-                </div>
                 <div class="img-wrapper blur-right img-70">
                   <img src="assets/img/prod-eventos/Bautismo Farah (102).webp" alt="Eventos 1" class="eventos-img" />
                 </div>
@@ -433,6 +435,9 @@
               </div>
               <!-- Fila 2 -->
               <div class="eventos-row">
+                <div class="gallery-title-overlay-l">
+                  <h2>FOREVENTS</h2>
+                </div>
                 <div class="img-wrapper blur-right img-50">
                   <img src="assets/img/prod-eventos/Bautismo Farah (95) (2).webp" alt="Eventos 3" class="eventos-img" />
                 </div>
@@ -608,12 +613,12 @@
                 <div class="img-wrapper blur-left img-40">
                   <img src="assets/img/prod-AV/jack2.webp" alt="Producción 2" class="eventos-img" />
                 </div>
-                <div class="gallery-title-overlay-l">
-                  <h2>JACK DANIEL'S</h2>
-                </div>
               </div>
               <!-- Fila 2 -->
               <div class="eventos-row">
+                <div class="gallery-title-overlay-l">
+                  <h2>JACK DANIEL'S</h2>
+                </div>
                 <div class="img-wrapper img-33">
                   <img src="assets/img/prod-AV/jack3.webp" alt="Producción 3" class="eventos-img" />
                 </div>

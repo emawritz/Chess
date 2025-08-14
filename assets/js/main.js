@@ -462,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function() {
               hideVideoModal();
               modalVideoPlayer.removeEventListener('error', onError);
           });
-        }, 2000);
+        }, 1500);
       }
       
       // Event listener para el botón de play
@@ -472,6 +472,14 @@ document.addEventListener('DOMContentLoaded', function() {
               showVideoModal();
           });
       }
+
+      // Nuevo event listener para el item completo
+      item.addEventListener('click', function(e) {
+        // Verificar que no se haya hecho clic en el botón de play (ese ya tiene su propio handler)
+        if (!e.target.closest('.play-button')) {
+            showVideoModal();
+        }
+    });
   });
 
   // Función para ocultar el modal de video
