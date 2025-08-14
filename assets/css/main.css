@@ -5741,6 +5741,31 @@ z-index: 2;
 }
 
 /* Carrusel responsive */
+@media (min-width: 1173px) and (max-width: 1588px) {
+  /* Estilos específicos para este rango problemático */
+  .testimonial-slider .swiper-wrapper {
+    height: 320px !important;
+  }
+  
+  .testimonial-item img {
+    height: 320px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+  
+  .patron {
+    margin: 0 !important;
+    height: 40px;
+    position: relative;
+    top: -15px;
+  }
+  
+  .testimonial-section {
+    margin-top: -25px !important;
+  }
+}
+
 @media (max-width: 1172px) and (min-width: 992px) {
   .testimonial-slider .swiper-wrapper {
     height: 240px !important;
