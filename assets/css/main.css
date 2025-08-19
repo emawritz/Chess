@@ -707,28 +707,43 @@ border-radius: 50px;
   overflow: hidden;
   background: var(--background-color);
   transition: all 0.6s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#preloader:before {
-  content: "";
-  position: fixed;
-  top: calc(50% - 30px);
-  left: calc(50% - 30px);
-  border: 6px solid #ffffff;
-  border-color: var(--accent-color) transparent var(--accent-color) transparent;
+#preloader.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  position: relative;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: animate-preloader 1.5s linear infinite;
+  background-color: var(--accent-color);
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: sk-bounce 2s infinite ease-in-out;
 }
 
-@keyframes animate-preloader {
-  0% {
-    transform: rotate(0deg);
-  }
+.double-bounce2 {
+  animation-delay: -1.0s;
+}
 
-  100% {
-    transform: rotate(360deg);
+@keyframes sk-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
   }
 }
 
@@ -2590,11 +2605,7 @@ z-index: 2;
   transition: transform 0.3s ease;
 }
 
-.portfolio .portfolio-filters li:hover {
-  color: var(--accent-color);
-  transform: translateY(-2px);
-  background: color-mix(in srgb, var(--accent-color), transparent 92%);
-}
+
 
 .portfolio .portfolio-filters li:hover i {
   transform: scale(1.1);
@@ -2638,17 +2649,6 @@ z-index: 2;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.portfolio .portfolio-entry .entry-image .entry-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-  display: flex;
-  align-items: flex-end;
-  padding: 30px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
 .portfolio .portfolio-entry .entry-image .entry-overlay .overlay-content {
   width: 100%;
@@ -2692,37 +2692,12 @@ z-index: 2;
   transform: translateY(20px);
 }
 
-.portfolio .portfolio-entry .entry-image .entry-overlay .entry-links a:hover {
-  background: var(--accent-color);
-  color: var(--contrast-color);
-  transform: translateY(-2px);
-}
 
-.portfolio .portfolio-entry .entry-image .entry-overlay .entry-links a:nth-child(1) {
-  transition-delay: 0.1s;
-}
 
-.portfolio .portfolio-entry .entry-image .entry-overlay .entry-links a:nth-child(2) {
-  transition-delay: 0.2s;
-}
 
-.portfolio .portfolio-entry:hover .entry-image img {
-  transform: scale(1.05);
-}
 
-.portfolio .portfolio-entry:hover .entry-image .entry-overlay {
-  opacity: 1;
-  transform: translateY(0);
-}
 
-.portfolio .portfolio-entry:hover .entry-image .entry-overlay .overlay-content {
-  transform: translateY(0);
-}
 
-.portfolio .portfolio-entry:hover .entry-image .entry-overlay .entry-links a {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 @media (max-width: 768px) {
   .portfolio .portfolio-entry .entry-image .entry-overlay {
@@ -5285,10 +5260,7 @@ z-index: 2;
     }
 }
 
-.portfolio-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(30, 50, 245, 0.3);
-}
+
 
 /* Portfolio Item Images */
 .portfolio-item .portfolio-image {
@@ -5298,9 +5270,7 @@ z-index: 2;
     transition: transform 0.4s ease;
 }
 
-.portfolio-item:hover .portfolio-image {
-    transform: scale(1.1);
-}
+
 
 /* Portfolio Overlay */
 .portfolio-overlay {
@@ -5438,30 +5408,6 @@ z-index: 2;
     }
 }
 
-/* Hover effects para diferentes items */
-.portfolio-item.teve-compras:hover {
-    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
-}
-
-.portfolio-item.jack-daniels:hover {
-    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
-}
-
-.portfolio-item.spiritu-blu:hover {
-    box-shadow: 0 20px 40px rgba(0, 191, 255, 0.3);
-}
-
-.portfolio-item.swell:hover {
-    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
-}
-
-.portfolio-item.juli-puente:hover {
-    box-shadow: 0 20px 40px rgba(255, 20, 147, 0.3);
-}
-
-.portfolio-item.reebok:hover {
-    box-shadow: 0 20px 40px rgba(30, 50, 245, 0.4);
-}
 
 /* Loading placeholder */
 .image-placeholder {

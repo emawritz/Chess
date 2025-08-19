@@ -70,7 +70,13 @@
   const preloader = document.querySelector('#preloader');
   if (preloader) {
     window.addEventListener('load', () => {
-      preloader.remove();
+      // Añadimos un pequeño retraso para asegurar que se vea la animación
+      setTimeout(() => {
+        preloader.classList.add('loaded');
+        setTimeout(() => {
+          preloader.remove();
+        }, 600);
+      }, 500);
     });
   }
 
