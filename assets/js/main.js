@@ -351,6 +351,28 @@ document.querySelectorAll('.service-card-wrapper').forEach(el => {
   });
 });
 
+// Modificamos los event listeners de las secciones de producción
+document.querySelectorAll('.portfolio-item').forEach(el => {
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', function() {
+    let section = this.getAttribute('data-section');
+    switch(section) {
+      case 'audiovisual':
+        showProductionSection('produccion-audiovisual');
+        updateHistory(productionHistory.states.audiovisual);
+        break;
+      case 'eventos':
+        showProductionSection('produccion-eventos');
+        updateHistory(productionHistory.states.eventos);
+        break;
+      case 'influencer':
+        showProductionSection('influencer-mkt');
+        updateHistory(productionHistory.states.influencer);
+        break;
+    }
+  });
+});
+
 // Modificamos el botón volver
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.produccion-back').forEach(backBtn => {
@@ -592,21 +614,4 @@ document.addEventListener('DOMContentLoaded', function() {
       e.stopPropagation();
   });
 });
-
-// Detectar Safari en Mac para aplicar fixes específicos
-if (navigator.userAgent.includes('Macintosh') && 
-    navigator.userAgent.includes('Safari') && 
-    !navigator.userAgent.includes('Chrome')) {
-  document.documentElement.classList.add('mac-safari');
-  
-  // Fix para el hero section
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    hero.style.height = window.innerHeight + 'px';
-    window.addEventListener('resize', () => {
-      hero.style.height = window.innerHeight + 'px';
-    });
-  }
-}
-
 })();

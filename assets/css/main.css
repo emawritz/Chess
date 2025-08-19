@@ -1326,6 +1326,11 @@ html {
   padding-right: 0;
   max-width: 100%;
 }
+.about .about-content {
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 30px;
+}
 
 @media (max-width: 768px) {
   .about {
@@ -1335,7 +1340,7 @@ html {
 
   .about .about-content {
     text-align: center; /* Centramos todo el contenido */
-    padding-left: 0;
+    padding-left: 15px;
     padding-right: 0;
   }
 
