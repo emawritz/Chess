@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Block crawler-unfriendly assets
+Disallow: /assets/img/_originals/
+Disallow: /vercel.json
+Disallow: /firebase.json
+
+# AI crawlers — allow (productora wants discovery in LLM answers)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://chessproducciones.com/sitemap.xml
