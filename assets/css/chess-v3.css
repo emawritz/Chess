@@ -1,0 +1,2764 @@
+/* ==========================================================================
+   CHESS v3 — Editorial Brutalist Redesign
+   Loaded AFTER main.css. Activated via body.chess-v3
+   ========================================================================== */
+
+body.chess-v3 {
+  --c-black: #000000;
+  --c-ink:   #ffffff;
+  --c-ink-70: rgba(255,255,255,0.72);
+  --c-ink-50: rgba(255,255,255,0.7);
+  --c-ink-30: rgba(255,255,255,0.28);
+  --c-ink-10: rgba(255,255,255,0.1);
+  --c-blue:  #1E32F5;
+  --c-blue-glow: rgba(30, 50, 245, 0.45);
+
+  --ff-display: 'Pricedown', 'Anton', 'Archivo Black', sans-serif;
+  --ff-body:    'Nunito Sans', 'Roboto', system-ui, sans-serif;
+  --ff-mono:    'Roboto', ui-monospace, monospace;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  background: var(--c-black);
+  overflow-x: hidden;
+}
+
+body.chess-v3 ::selection { background: var(--c-blue); color: #fff; }
+
+/* ==========================================================================
+   MASTHEAD — solid black, magazine-style
+   ========================================================================== */
+body.chess-v3 .header--v2 {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--c-black) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid var(--c-ink-10) !important;
+  padding: 0 !important;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  box-shadow: none !important;
+  transition: height 0.4s var(--ease);
+}
+
+body.chess-v3 .header--v2.scrolled {
+  height: 56px;
+  box-shadow: 0 1px 0 var(--c-ink-10) !important;
+}
+
+body.chess-v3 .header--v2 .header-container {
+  width: 100%;
+  max-width: none !important;
+  padding: 0 clamp(1.25rem, 4vw, 3rem) !important;
+  gap: 2rem;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+body.chess-v3 .header--v2 .logo { flex: 0 0 auto; margin-right: auto; }
+body.chess-v3 .header--v2 .logo img {
+  height: 28px !important;
+  width: auto !important;
+  max-width: 140px;
+  filter: none !important;
+  display: block;
+}
+
+@media (min-width: 1200px) {
+  body.chess-v3 .header--v2 .navmenu ul {
+    display: flex; align-items: center; gap: 0;
+    margin: 0; padding: 0; list-style: none;
+  }
+  body.chess-v3 .header--v2 .navmenu li { display: flex; align-items: center; }
+  body.chess-v3 .header--v2 .navmenu li + li::before {
+    content: ''; width: 1px; height: 12px;
+    background: var(--c-ink-10); margin: 0 1.25rem;
+  }
+  body.chess-v3 .header--v2 .navmenu a,
+  body.chess-v3 .header--v2 .navmenu a:focus {
+    display: inline-flex !important;
+    align-items: baseline;
+    gap: 0.45rem;
+    padding: 0 !important;
+    font-family: var(--ff-mono) !important;
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--c-ink-70) !important;
+    background: transparent !important;
+    text-shadow: none !important;
+    transition: color 0.25s var(--ease);
+  }
+  body.chess-v3 .header--v2 .navmenu a::after { display: none !important; }
+  body.chess-v3 .header--v2 .navmenu .nav-num {
+    font-size: 0.58rem; font-weight: 500;
+    color: var(--c-blue); letter-spacing: 0.1em;
+  }
+  body.chess-v3 .header--v2 .navmenu a:hover,
+  body.chess-v3 .header--v2 .navmenu .active {
+    color: var(--c-ink) !important;
+  }
+}
+
+body.chess-v3 .header--v2 .header-cta {
+  padding: 0.6rem 1.15rem;
+  background: var(--c-blue);
+  color: #fff;
+  border-radius: 0;
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  box-shadow: none;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease);
+}
+body.chess-v3 .header--v2 .header-cta:hover {
+  background: #fff; color: var(--c-blue); transform: none;
+}
+body.chess-v3 .header--v2 .header-cta i { font-size: 0.75rem; }
+
+@media (max-width: 1199px) {
+  body.chess-v3 .header--v2 { height: 56px; }
+  body.chess-v3 .header--v2 .header-cta { display: none; }
+  body.chess-v3 .header--v2 .mobile-nav-toggle {
+    color: #fff !important; font-size: 1.5rem !important;
+  }
+}
+
+/* ==========================================================================
+   HERO — split editorial, pattern framed right, solid black text zone left
+   ========================================================================== */
+body.chess-v3 .hero--v2 {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+  background: var(--c-black);
+  overflow: hidden;
+  padding-top: 68px;
+}
+
+body.chess-v3 .hero--v2 .hero-pattern {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: repeating-conic-gradient(#000 0deg 90deg, #fff 90deg 180deg);
+  background-size: 240px 240px;
+  opacity: 1;
+  z-index: 0;
+  --rotx: 62deg;
+  --scale: 1;
+  --px: 0px;
+  --py: 0px;
+  transform: perspective(1400px) rotateX(var(--rotx)) scale(var(--scale));
+  transform-origin: 50% 85%;
+  transition: transform 0.5s var(--ease);
+  will-change: transform;
+}
+body.chess-v3 .hero--v2 .hero-pattern.is-interactive {
+  transform: perspective(1400px) rotateX(var(--rotx)) scale(var(--scale)) translate3d(var(--px), var(--py), 0);
+  transition: transform 0.3s var(--ease);
+}
+
+/* Vignette vertical suave: oscurece top/bottom para el header + marquee,
+   y un vignette radial muy sutil en el centro. El tablero se ve completo. */
+body.chess-v3 .hero--v2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 55%,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0.35) 60%,
+      rgba(0,0,0,0.75) 100%),
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.65) 0%,
+      rgba(0,0,0,0.15) 18%,
+      transparent 40%,
+      transparent 75%,
+      rgba(0,0,0,0.5) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+body.chess-v3 .hero--v2 .hero-overlay,
+body.chess-v3 .hero--v2::after { display: none; }
+
+body.chess-v3 .hero--v2 .container {
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vh, 7rem) clamp(1.5rem, 4vw, 4rem) 10rem;
+  min-height: calc(100vh - 68px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (max-width: 991px) {
+  body.chess-v3 .hero--v2 .container {
+    grid-template-columns: 1fr;
+    padding-bottom: 8rem;
+  }
+}
+
+body.chess-v3 .hero--v2 .row.reverse { display: contents; }
+body.chess-v3 .hero--v2 .col-lg-7,
+body.chess-v3 .hero--v2 .col-lg-5 {
+  width: 100%; max-width: 100%;
+  padding: 0; flex: unset;
+}
+
+body.chess-v3 .hero--v2 .content-col {
+  order: 1;
+  min-height: auto !important;
+  padding-right: 0 !important;
+  text-align: left !important;
+  margin-bottom: 0 !important;
+}
+body.chess-v3 .hero--v2 .col-lg-5 {
+  order: 2;
+  display: flex; justify-content: center; align-items: center;
+}
+
+body.chess-v3 .hero--v2 .hero-meta {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-bottom: clamp(1.5rem, 4vh, 3rem);
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-ink-50);
+  animation: v3-rise 0.9s var(--ease) both;
+}
+body.chess-v3 .hero--v2 .hero-meta__num { color: var(--c-blue); font-weight: 700; }
+body.chess-v3 .hero--v2 .hero-meta__line { flex: 0 0 40px; height: 1px; background: var(--c-ink-30); }
+
+body.chess-v3 .hero--v2 .hero-heading { margin-bottom: clamp(1.5rem, 4vh, 2.5rem); }
+body.chess-v3 .hero--v2 .hero-heading h1 {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  color: var(--c-ink);
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.85), 0 0 60px rgba(0,0,0,0.6);
+  display: block;
+}
+body.chess-v3 .hero--v2 .hero-heading .word {
+  display: block;
+  font-weight: 800;
+  position: relative;
+  clip-path: inset(-10% -8% 100% -8%);
+  transform: translateY(0.55em);
+  animation: v3-word-reveal 1.05s var(--ease) both;
+  will-change: clip-path, transform;
+}
+body.chess-v3 .hero--v2 .hero-heading .word--offset-1 {
+  color: var(--c-ink);
+  animation-delay: 0.15s;
+}
+body.chess-v3 .hero--v2 .hero-heading .word--fill {
+  color: var(--c-blue);
+  text-shadow: 0 10px 60px var(--c-blue-glow);
+  animation-delay: 0.32s;
+  white-space: nowrap;
+  font-size: clamp(3rem, 8.5vw, 8rem);
+}
+body.chess-v3 .hero--v2 .hero-heading .word--offset-2 {
+  color: var(--c-ink);
+  animation-delay: 0.5s;
+}
+body.chess-v3 .hero--v2 .hero-heading .word--offset-2::after {
+  content: '.';
+  color: var(--c-blue);
+}
+
+body.chess-v3 .hero--v2 .hero-sub {
+  max-width: 46ch;
+  margin: 0 0 clamp(2rem, 5vh, 3rem) 0;
+  animation: v3-rise 0.9s var(--ease) 0.6s both;
+}
+body.chess-v3 .hero--v2 .hero-sub p {
+  font-family: var(--ff-body);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--c-ink-70);
+  margin: 0;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+}
+body.chess-v3 .hero--v2 .hero-meta { text-shadow: 0 2px 8px rgba(0,0,0,0.9); }
+body.chess-v3 .hero--v2 .hero-sub strong {
+  color: var(--c-ink);
+  font-weight: 700;
+}
+
+body.chess-v3 .hero--v2 .hero-cta {
+  display: flex; gap: 0; flex-wrap: wrap;
+  animation: v3-rise 0.9s var(--ease) 0.75s both;
+}
+body.chess-v3 .hero--v2 .hero-cta .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.75rem;
+  border-radius: 0;
+  font-family: var(--ff-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+  box-shadow: none;
+  transform: none !important;
+}
+body.chess-v3 .hero--v2 .btn-primary-chess {
+  background: var(--c-blue);
+  color: #fff;
+  border-color: var(--c-blue);
+}
+body.chess-v3 .hero--v2 .btn-primary-chess:hover {
+  background: #fff; color: var(--c-blue); border-color: #fff;
+}
+body.chess-v3 .hero--v2 .btn-ghost-chess {
+  background: transparent;
+  color: var(--c-ink);
+  border-color: var(--c-ink-30);
+}
+body.chess-v3 .hero--v2 .btn-ghost-chess:hover {
+  background: var(--c-ink); color: var(--c-black); border-color: var(--c-ink);
+}
+body.chess-v3 .hero--v2 .hero-cta .btn i {
+  font-size: 0.9rem;
+  transition: transform 0.3s var(--ease);
+}
+body.chess-v3 .hero--v2 .hero-cta .btn:hover i { transform: translateX(4px); }
+
+body.chess-v3 .hero--v2 .visual-content {
+  position: relative;
+  width: 100%; height: 100%;
+  display: flex; justify-content: center; align-items: center;
+}
+body.chess-v3 .hero--v2 .fluid-shape {
+  position: relative;
+  width: min(560px, 90%);
+  max-width: 100%;
+  animation: v3-piece-drop 1.1s var(--ease) 0.4s both;
+}
+body.chess-v3 .hero--v2 .fluid-shape .fluid-img {
+  width: 100%; height: auto; display: block;
+  filter: drop-shadow(0 40px 60px rgba(0,0,0,0.55))
+          drop-shadow(0 0 80px rgba(30,50,245,0.25));
+}
+
+body.chess-v3 .hero--v2 .hero-side-label {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%; left: auto;
+  transform: rotate(90deg) translateY(-50%);
+  transform-origin: right top;
+  display: flex; gap: 0.75rem;
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--c-ink-30);
+  z-index: 3;
+}
+body.chess-v3 .hero--v2 .hero-side-label .dot { color: var(--c-blue); font-size: 0.5rem; }
+@media (max-width: 1199px) { body.chess-v3 .hero--v2 .hero-side-label { display: none; } }
+
+body.chess-v3 .hero--v2 .hero-scroll {
+  bottom: 5rem;
+  right: auto;
+  left: clamp(1.5rem, 4vw, 4rem);
+  color: var(--c-ink-50);
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+}
+body.chess-v3 .hero--v2 .hero-scroll__line {
+  background: linear-gradient(to bottom, var(--c-ink-30), transparent);
+}
+body.chess-v3 .hero--v2 .hero-scroll__line::after {
+  background: linear-gradient(to bottom, transparent, var(--c-blue), transparent);
+}
+
+body.chess-v3 .hero--v2 .hero-marquee {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--c-ink-10);
+  background: var(--c-black);
+  z-index: 3;
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+body.chess-v3 .hero--v2 .hero-marquee__track {
+  gap: 3rem;
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.45em;
+  color: var(--c-ink-50);
+  animation-duration: 55s;
+}
+body.chess-v3 .hero--v2 .hero-marquee__track .sep {
+  color: var(--c-blue);
+  font-size: 0.45rem;
+}
+
+@keyframes v3-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes v3-reveal {
+  from { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+/* Word reveal con cortina clip-path (cinematográfico) */
+@keyframes v3-word-reveal {
+  0%   { clip-path: inset(-10% -8% 100% -8%); transform: translateY(0.55em); }
+  55%  { clip-path: inset(-10% -8% 0% -8%);   transform: translateY(0.05em); }
+  100% { clip-path: inset(-10% -8% -8% -8%);  transform: translateY(0); }
+}
+
+/* Pieza: aparece asentada con scale + leve rotation, no cayendo */
+@keyframes v3-piece-drop {
+  0%   { opacity: 0; transform: translate3d(20px, 40px, 0) scale(0.82) rotate(-4deg); filter: blur(4px); }
+  60%  { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1) rotate(0); filter: blur(0); }
+}
+
+/* Chars: sin animación propia — el reveal lo hace el clip de .word */
+body.chess-v3 .hero--v2 .hero-heading .char {
+  display: inline-block;
+  white-space: pre;
+  opacity: 1;
+  transform: none;
+  filter: none;
+  animation: none;
+}
+
+/* Meta label — efecto terminal: revelado con caret */
+body.chess-v3 .hero--v2 .hero-meta__text {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+}
+body.chess-v3 .hero--v2 .hero-meta.is-typing .hero-meta__text {
+  width: 0;
+  animation: v3-typing 1.6s steps(42, end) 0.3s forwards,
+             v3-caret 0.6s step-end infinite;
+  border-right: 2px solid var(--c-blue);
+}
+body.chess-v3 .hero--v2 .hero-meta.is-typed .hero-meta__text {
+  width: auto;
+  border-right: 0;
+}
+@keyframes v3-typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+@keyframes v3-caret {
+  50% { border-color: transparent; }
+}
+
+/* Ghost button — wipe azul de izquierda a derecha */
+body.chess-v3 .hero--v2 .btn-ghost-chess {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  z-index: 0;
+}
+body.chess-v3 .hero--v2 .btn-ghost-chess::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--c-blue);
+  transform: translateX(-101%);
+  transition: transform 0.45s var(--ease);
+  z-index: -1;
+}
+body.chess-v3 .hero--v2 .btn-ghost-chess:hover {
+  color: #fff;
+  border-color: var(--c-blue);
+  background: transparent;
+}
+body.chess-v3 .hero--v2 .btn-ghost-chess:hover::before {
+  transform: translateX(0);
+}
+
+/* Primary button — arrow salta + letra se mantiene */
+body.chess-v3 .hero--v2 .btn-primary-chess {
+  overflow: hidden;
+}
+body.chess-v3 .hero--v2 .btn-primary-chess i {
+  transition: transform 0.4s var(--ease);
+}
+body.chess-v3 .hero--v2 .btn-primary-chess:hover i {
+  transform: translateX(6px);
+}
+
+/* Pieza: breath + micro-tilt combinados vía vars */
+body.chess-v3 .hero--v2 .fluid-shape {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --breath-y: 0px;
+  --breath-r: 0deg;
+  transform-style: preserve-3d;
+}
+body.chess-v3 .hero--v2 .fluid-shape.is-settled {
+  animation: v3-piece-breath 7s ease-in-out infinite;
+}
+body.chess-v3 .hero--v2 .fluid-shape.is-settled .fluid-img {
+  transform: perspective(900px)
+             rotateX(var(--tilt-x))
+             rotateY(var(--tilt-y));
+  transition: transform 0.3s var(--ease);
+  transform-origin: 50% 80%;
+}
+@keyframes v3-piece-breath {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0); }
+  50%      { transform: translate3d(0, -10px, 0) rotate(-0.6deg); }
+}
+
+/* Pattern: transform se define en la regla base con vars (más arriba) */
+
+/* Marquee pause on hover */
+body.chess-v3 .hero--v2 .hero-marquee:hover .hero-marquee__track {
+  animation-play-state: paused;
+}
+
+/* Magnetic CTA — el wrapper traslada, el botón recibe hover normal */
+body.chess-v3 .hero--v2 .btn-primary-chess {
+  will-change: transform;
+  transition: transform 0.3s var(--ease), background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+/* Scroll-fade del contenido del hero */
+body.chess-v3 .hero--v2 .content-col,
+body.chess-v3 .hero--v2 .col-lg-5 {
+  transition: opacity 0.3s linear, transform 0.3s linear;
+}
+
+/* Respeto reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  body.chess-v3 .hero--v2 .fluid-shape.is-settled { animation: none !important; }
+  body.chess-v3 .hero--v2 .hero-pattern.is-interactive { transform: perspective(1400px) rotateX(62deg) !important; }
+  body.chess-v3 .hero--v2 .hero-heading .char { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.chess-v3 .hero--v2 .hero-meta,
+  body.chess-v3 .hero--v2 .hero-heading .word,
+  body.chess-v3 .hero--v2 .hero-sub,
+  body.chess-v3 .hero--v2 .hero-cta,
+  body.chess-v3 .hero--v2 .fluid-shape { animation: none !important; }
+}
+
+@media (max-width: 767px) {
+  body.chess-v3 .hero--v2 .container {
+    padding-top: 5rem; padding-bottom: 7rem; gap: 2rem;
+  }
+  body.chess-v3 .hero--v2 .hero-heading h1 {
+    font-size: clamp(3rem, 14vw, 6rem);
+    line-height: 0.9;
+  }
+  body.chess-v3 .hero--v2 .hero-meta__text {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
+  body.chess-v3 .hero--v2 .col-lg-5 { order: 0; }
+  body.chess-v3 .hero--v2 .content-col { order: 1; }
+  body.chess-v3 .hero--v2 .fluid-shape { width: min(340px, 75%); }
+  body.chess-v3 .hero--v2 .hero-pattern {
+    background-size: 120px 120px;
+    transform: perspective(800px) rotateX(58deg);
+  }
+  body.chess-v3 .hero--v2 .hero-scroll { display: none; }
+}
+
+/* ==========================================================================
+   Cuando GSAP está activo, desactivamos las keyframes CSS del hero.
+   GSAP toma control total de la timeline.
+   ========================================================================== */
+html.has-gsap body.chess-v3 .hero--v2 .hero-meta,
+html.has-gsap body.chess-v3 .hero--v2 .hero-heading .word,
+html.has-gsap body.chess-v3 .hero--v2 .hero-sub,
+html.has-gsap body.chess-v3 .hero--v2 .hero-cta,
+html.has-gsap body.chess-v3 .hero--v2 .fluid-shape {
+  animation: none !important;
+}
+
+/* (anti-FOUC ya no aplica: GSAP con gsap.set maneja el estado inicial inline) */
+
+/* Permitir que Lenis tome control del scroll del documento */
+html.has-gsap, html.has-gsap body {
+  height: auto;
+}
+
+/* El typing del meta ahora lo hace JS; desactivar la versión CSS */
+html.has-gsap body.chess-v3 .hero--v2 .hero-meta.is-typing .hero-meta__text,
+html.has-gsap body.chess-v3 .hero--v2 .hero-meta.is-typed .hero-meta__text {
+  width: auto !important;
+  animation: none !important;
+  border-right: 0 !important;
+}
+
+/* ==========================================================================
+   Pieza — enhancement visual (halo, ground shadow, rim light)
+   ========================================================================== */
+
+body.chess-v3 .hero--v2 .fluid-shape {
+  position: relative;
+}
+
+/* Spotlight radial azul DETRÁS de la pieza */
+body.chess-v3 .hero--v2 .fluid-shape::before {
+  content: '';
+  position: absolute;
+  inset: -20% -15% -5% -15%;
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    rgba(30, 50, 245, 0.35) 0%,
+    rgba(30, 50, 245, 0.15) 25%,
+    rgba(30, 50, 245, 0.05) 50%,
+    transparent 70%
+  );
+  z-index: -1;
+  filter: blur(20px);
+  pointer-events: none;
+  animation: v3-halo-pulse 6s ease-in-out infinite;
+}
+
+@keyframes v3-halo-pulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.08); }
+}
+
+/* Ground shadow elíptica que la ancla al tablero */
+body.chess-v3 .hero--v2 .fluid-shape::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -8%;
+  width: 85%;
+  height: 10%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.35) 40%,
+    transparent 70%
+  );
+  filter: blur(8px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Drop-shadow stack reforzado en la imagen */
+body.chess-v3 .hero--v2 .fluid-shape .fluid-img {
+  filter:
+    drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6))
+    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4))
+    drop-shadow(0 0 40px rgba(30, 50, 245, 0.45))
+    drop-shadow(0 0 80px rgba(30, 50, 245, 0.2));
+  position: relative;
+  z-index: 2;
+}
+
+/* Cuando GSAP toma control con el breath, el drop-shadow stack queda en .fluid-img
+   (no en .fluid-shape) → no interfiere con filter animations de GSAP */
+
+/* Reduced motion: halo sin pulse */
+@media (prefers-reduced-motion: reduce) {
+  body.chess-v3 .hero--v2 .fluid-shape::before {
+    animation: none;
+    opacity: 0.9;
+  }
+}
+
+/* ==========================================================================
+   Pieza — mask para ocultar el mini-tablero del render
+   ========================================================================== */
+body.chess-v3 .hero--v2 .fluid-shape .fluid-img {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 76%,
+    rgba(0,0,0,0.7) 86%,
+    rgba(0,0,0,0.25) 93%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 76%,
+    rgba(0,0,0,0.7) 86%,
+    rgba(0,0,0,0.25) 93%,
+    transparent 100%
+  );
+}
+
+/* Refinar ground shadow ahora que la base no tiene su propio piso */
+body.chess-v3 .hero--v2 .fluid-shape::after {
+  bottom: 2%;
+  width: 72%;
+  height: 8%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.45) 35%,
+    rgba(0, 0, 0, 0.15) 60%,
+    transparent 75%
+  );
+  filter: blur(10px);
+}
+
+/* Glow extra azul justo donde la pieza toca el tablero */
+body.chess-v3 .hero--v2 .fluid-shape {
+  background:
+    radial-gradient(
+      ellipse at 50% 82%,
+      rgba(30, 50, 245, 0.18) 0%,
+      transparent 40%
+    ) no-repeat;
+}
+
+/* ==========================================================================
+   ABOUT v2 — Editorial section con blue como campo dominante
+   ========================================================================== */
+body.chess-v3 .about--v2 {
+  position: relative;
+  background: var(--c-blue);
+  padding: clamp(5rem, 10vh, 8rem) 0 0;
+  overflow: hidden;
+  color: #fff;
+  isolation: isolate;
+}
+
+/* Texturas de fondo: grid fino + vignette + noise sutil */
+body.chess-v3 .about--v2 .about-v2__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(to right,
+      rgba(255,255,255,0.05) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(to bottom,
+      rgba(255,255,255,0.05) 0 1px, transparent 1px 96px),
+    radial-gradient(ellipse at 50% 50%,
+      transparent 40%,
+      rgba(0,0,0,0.22) 85%,
+      rgba(0,0,0,0.45) 100%);
+}
+body.chess-v3 .about--v2 .about-v2__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.35'/></svg>");
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+}
+
+body.chess-v3 .about--v2 .about-v2__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+}
+
+/* Meta label */
+body.chess-v3 .about--v2 .about-v2__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(2rem, 5vh, 4rem);
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+}
+body.chess-v3 .about--v2 .about-v2__num {
+  font-weight: 700;
+  color: #000;
+  background: #fff;
+  padding: 0.2em 0.5em;
+}
+body.chess-v3 .about--v2 .about-v2__divider {
+  flex: 0 0 48px;
+  height: 1px;
+  background: rgba(255,255,255,0.35);
+}
+
+/* Head: eyebrow SOMOS + CHESS outline */
+body.chess-v3 .about--v2 .about-v2__head {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: clamp(2rem, 5vh, 3.5rem);
+}
+body.chess-v3 .about--v2 .about-v2__eyebrow {
+  display: inline-block;
+  font-family: var(--ff-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(255,255,255,0.35);
+}
+body.chess-v3 .about--v2 .about-v2__title {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(5rem, 18vw, 18rem);
+  line-height: 0.82;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: transparent;
+  -webkit-text-stroke: 2px #fff;
+  display: flex;
+  align-items: flex-end;
+  text-shadow: none;
+}
+body.chess-v3 .about--v2 .about-v2__word {
+  display: inline-block;
+}
+body.chess-v3 .about--v2 .about-v2__period {
+  color: #fff;
+  -webkit-text-stroke: 0;
+  margin-left: -0.02em;
+}
+
+/* Body copy editorial */
+body.chess-v3 .about--v2 .about-v2__body {
+  max-width: 720px;
+  margin-bottom: clamp(3rem, 7vh, 5rem);
+  font-family: var(--ff-body);
+  color: rgba(255,255,255,0.9);
+}
+body.chess-v3 .about--v2 .about-v2__body p {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.55;
+  margin: 0 0 1.15rem;
+}
+body.chess-v3 .about--v2 .about-v2__lead {
+  font-size: clamp(1.25rem, 1.6vw, 1.55rem) !important;
+  line-height: 1.35 !important;
+  font-weight: 600;
+  color: #fff !important;
+  border-left: 2px solid #fff;
+  padding-left: 1.25rem;
+  margin-bottom: 2rem !important;
+}
+body.chess-v3 .about--v2 .about-v2__body mark {
+  background: transparent;
+  color: #fff;
+  font-weight: 800;
+  border-bottom: 2px solid rgba(255,255,255,0.6);
+  padding: 0 0.05em;
+}
+
+/* Filmstrip */
+body.chess-v3 .about--v2 .about-v2__film {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: clamp(3rem, 6vh, 5rem);
+  padding: 2rem 0;
+  background: #000;
+  overflow: hidden;
+  border-top: 14px solid #fff;
+  border-bottom: 14px solid #fff;
+  mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+}
+/* Perforaciones (sprocket holes) arriba y abajo */
+body.chess-v3 .about--v2 .about-v2__film::before,
+body.chess-v3 .about--v2 .about-v2__film::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 14px;
+  background-image: repeating-linear-gradient(
+    to right,
+    #000 0 18px,
+    transparent 18px 32px
+  );
+  z-index: 3;
+  pointer-events: none;
+}
+body.chess-v3 .about--v2 .about-v2__film::before { top: -14px; }
+body.chess-v3 .about--v2 .about-v2__film::after  { bottom: -14px; }
+
+body.chess-v3 .about--v2 .about-v2__film-track {
+  display: flex;
+  gap: 1.25rem;
+  width: max-content;
+  animation: av2-film 48s linear infinite;
+}
+body.chess-v3 .about--v2 .about-v2__film:hover .about-v2__film-track {
+  animation-play-state: paused;
+}
+
+body.chess-v3 .about--v2 .about-v2__frame {
+  position: relative;
+  margin: 0;
+  flex: 0 0 auto;
+  width: clamp(240px, 22vw, 360px);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #000;
+  transition: transform 0.4s var(--ease);
+}
+body.chess-v3 .about--v2 .about-v2__frame:hover { transform: scale(1.02); }
+body.chess-v3 .about--v2 .about-v2__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s var(--ease), filter 0.4s var(--ease);
+  filter: grayscale(0.15) contrast(1.05);
+}
+body.chess-v3 .about--v2 .about-v2__frame:hover img {
+  transform: scale(1.05);
+  filter: grayscale(0) contrast(1.1);
+}
+body.chess-v3 .about--v2 .about-v2__frame figcaption {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: #fff;
+  background: rgba(0,0,0,0.6);
+  padding: 0.35rem 0.6rem;
+  backdrop-filter: blur(4px);
+}
+
+@keyframes av2-film {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Closing: pieces + statement + CTA */
+body.chess-v3 .about--v2 .about-v2__closing {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 4vw, 4rem) clamp(4rem, 8vh, 6rem);
+  display: grid;
+  grid-template-columns: minmax(200px, 0.6fr) minmax(0, 2fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+@media (max-width: 767px) {
+  body.chess-v3 .about--v2 .about-v2__closing {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+}
+body.chess-v3 .about--v2 .about-v2__pieces {
+  display: flex;
+  gap: -1rem;
+  align-items: flex-end;
+  position: relative;
+}
+body.chess-v3 .about--v2 .about-v2__piece {
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.4));
+  transition: transform 0.5s var(--ease);
+}
+body.chess-v3 .about--v2 .about-v2__piece--white {
+  transform: translateY(0);
+  z-index: 2;
+}
+body.chess-v3 .about--v2 .about-v2__piece--black {
+  margin-left: -2.5rem;
+  transform: translateY(-10px);
+  z-index: 1;
+}
+body.chess-v3 .about--v2 .about-v2__closing:hover .about-v2__piece--white {
+  transform: translateY(-6px) rotate(-3deg);
+}
+body.chess-v3 .about--v2 .about-v2__closing:hover .about-v2__piece--black {
+  transform: translateY(-18px) rotate(4deg);
+}
+
+body.chess-v3 .about--v2 .about-v2__statement {
+  font-family: var(--ff-body);
+  font-weight: 400;
+  font-size: clamp(1.15rem, 1.6vw, 1.6rem);
+  line-height: 1.45;
+  color: rgba(255,255,255,0.92);
+  margin: 0 0 1.5rem;
+}
+body.chess-v3 .about--v2 .about-v2__statement em {
+  font-style: normal;
+  font-weight: 800;
+  color: #fff;
+  border-bottom: 2px solid rgba(255,255,255,0.4);
+  padding: 0 0.05em;
+}
+body.chess-v3 .about--v2 .about-v2__play {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--ff-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+body.chess-v3 .about--v2 .about-v2__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.75rem;
+  background: #000;
+  color: #fff;
+  font-family: var(--ff-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+body.chess-v3 .about--v2 .about-v2__cta:hover {
+  background: #fff;
+  color: var(--c-blue);
+}
+body.chess-v3 .about--v2 .about-v2__cta i { transition: transform 0.3s var(--ease); }
+body.chess-v3 .about--v2 .about-v2__cta:hover i { transform: translateX(4px); }
+
+/* Ocultar el legacy markup que queda en el DOM */
+body.chess-v3 .about--v2 .about-v2__legacy,
+body.chess-v3 .about--v2 .about-v2__legacy-testimonial {
+  display: none !important;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  body.chess-v3 .about--v2 .about-v2__title {
+    font-size: clamp(4rem, 22vw, 8rem);
+  }
+  body.chess-v3 .about--v2 .about-v2__lead { font-size: 1.15rem !important; }
+  body.chess-v3 .about--v2 .about-v2__body p { font-size: 0.95rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.chess-v3 .about--v2 .about-v2__film-track { animation: none; }
+}
+
+/* ==========================================================================
+   ABOUT v2 — Closing redesign: edge-to-edge "¿JUGAMOS?" payoff
+   ========================================================================== */
+body.chess-v3 .about--v2 .about-v2__closing {
+  display: block !important;
+  grid-template-columns: none !important;
+  text-align: center;
+  max-width: 1440px !important;
+  padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 4vw, 4rem) clamp(5rem, 10vh, 8rem) !important;
+}
+
+body.chess-v3 .about--v2 .about-v2__closing-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: clamp(2rem, 4vh, 3rem);
+}
+body.chess-v3 .about--v2 .about-v2__closing-label span:first-child {
+  font-weight: 700;
+  color: #000;
+  background: #fff;
+  padding: 0.2em 0.55em;
+}
+body.chess-v3 .about--v2 .about-v2__closing-line {
+  display: inline-block !important;
+  width: 40px !important;
+  height: 1px;
+  background: rgba(255,255,255,0.5);
+  padding: 0 !important;
+}
+
+/* Statement centrado */
+body.chess-v3 .about--v2 .about-v2__statement {
+  font-family: var(--ff-body);
+  font-weight: 400;
+  font-size: clamp(1.15rem, 1.6vw, 1.55rem);
+  line-height: 1.5;
+  color: rgba(255,255,255,0.9);
+  margin: 0 auto clamp(3rem, 6vh, 4.5rem);
+  max-width: 58ch;
+}
+body.chess-v3 .about--v2 .about-v2__statement em {
+  font-style: normal;
+  font-weight: 800;
+  color: #fff;
+  border-bottom: 2px solid rgba(255,255,255,0.35);
+  padding: 0 0.05em;
+}
+
+/* ¿JUGAMOS? edge-to-edge con piezas flanking */
+body.chess-v3 .about--v2 .about-v2__play-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 3rem);
+  margin: 0 auto clamp(3rem, 6vh, 4.5rem);
+  flex-wrap: nowrap;
+  max-width: 100%;
+}
+
+body.chess-v3 .about--v2 .about-v2__play {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(4rem, 15vw, 16rem);
+  line-height: 0.85;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0;
+  display: inline-block;
+  white-space: nowrap;
+  text-shadow: 0 10px 50px rgba(0,0,0,0.3);
+}
+
+body.chess-v3 .about--v2 .about-v2__piece {
+  width: clamp(120px, 14vw, 220px) !important;
+  height: clamp(160px, 18vw, 280px) !important;
+  object-fit: contain;
+  object-position: center bottom;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.45));
+  transition: transform 0.6s var(--ease);
+  margin: 0 !important;
+}
+/* Compensación de tamaño — el PNG de la derecha tiene ~48% más padding
+   intrínseco, así que le subo el scale base para matchear visualmente */
+body.chess-v3 .about--v2 .about-v2__piece--left {
+  transform: translateY(18px) rotate(-8deg) scale(1);
+}
+body.chess-v3 .about--v2 .about-v2__piece--right {
+  transform: translateY(-6px) rotate(12deg) scale(1.48);
+}
+body.chess-v3 .about--v2 .about-v2__play-row:hover .about-v2__piece--left {
+  transform: translateY(8px) rotate(-14deg) scale(1.05);
+}
+body.chess-v3 .about--v2 .about-v2__play-row:hover .about-v2__piece--right {
+  transform: translateY(-16px) rotate(18deg) scale(1.55);
+}
+
+/* CTAs row */
+body.chess-v3 .about--v2 .about-v2__ctas {
+  display: inline-flex;
+  gap: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+body.chess-v3 .about--v2 .about-v2__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.1rem 2rem;
+  font-family: var(--ff-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+body.chess-v3 .about--v2 .about-v2__cta i { transition: transform 0.3s var(--ease); }
+body.chess-v3 .about--v2 .about-v2__cta:hover i { transform: translateX(4px); }
+
+body.chess-v3 .about--v2 .about-v2__cta--primary {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+body.chess-v3 .about--v2 .about-v2__cta--primary:hover {
+  background: #fff;
+  color: var(--c-blue);
+  border-color: #fff;
+}
+
+body.chess-v3 .about--v2 .about-v2__cta--ghost {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255,255,255,0.5);
+}
+body.chess-v3 .about--v2 .about-v2__cta--ghost:hover {
+  background: #fff;
+  color: var(--c-blue);
+  border-color: #fff;
+}
+
+/* Ocultar el pieces/piece legacy */
+body.chess-v3 .about--v2 .about-v2__pieces { display: none !important; }
+
+/* Mobile */
+@media (max-width: 991px) {
+  body.chess-v3 .about--v2 .about-v2__play-row {
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  body.chess-v3 .about--v2 .about-v2__play {
+    font-size: clamp(3rem, 12vw, 6rem);
+    order: 2;
+    width: 100%;
+    text-align: center;
+  }
+  body.chess-v3 .about--v2 .about-v2__piece--left {
+    order: 1;
+    width: clamp(100px, 14vw, 140px) !important;
+    height: clamp(130px, 18vw, 180px) !important;
+    transform: rotate(-8deg) scale(1) !important;
+  }
+  body.chess-v3 .about--v2 .about-v2__piece--right {
+    order: 3;
+    width: clamp(100px, 14vw, 140px) !important;
+    height: clamp(130px, 18vw, 180px) !important;
+    transform: rotate(12deg) scale(1.48) !important;
+  }
+}
+@media (max-width: 599px) {
+  body.chess-v3 .about--v2 .about-v2__ctas { width: 100%; flex-direction: column; }
+  body.chess-v3 .about--v2 .about-v2__cta { width: 100%; justify-content: center; }
+}
+
+/* ==========================================================================
+   SERVICES v2 — editorial dark section with 3 interactive cards
+   ========================================================================== */
+body.chess-v3 .services--v2 {
+  position: relative;
+  background: var(--c-black);
+  color: #fff;
+  padding: clamp(5rem, 10vh, 9rem) 0 clamp(4rem, 8vh, 7rem);
+  overflow: hidden;
+}
+
+body.chess-v3 .services--v2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(to right,
+      rgba(255,255,255,0.04) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(to bottom,
+      rgba(255,255,255,0.04) 0 1px, transparent 1px 120px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+body.chess-v3 .services--v2 .services-v2__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+}
+
+/* Meta */
+body.chess-v3 .services--v2 .services-v2__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(2rem, 4vh, 3rem);
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-ink-50);
+}
+body.chess-v3 .services--v2 .services-v2__num {
+  font-weight: 700;
+  color: var(--c-blue);
+}
+body.chess-v3 .services--v2 .services-v2__divider {
+  flex: 0 0 40px;
+  height: 1px;
+  background: var(--c-ink-30);
+}
+
+/* Title editorial */
+body.chess-v3 .services--v2 .services-v2__title {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  margin: 0 0 clamp(1.5rem, 3vh, 2rem);
+  color: #fff;
+  text-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  max-width: 1100px;
+}
+body.chess-v3 .services--v2 .services-v2__title .line {
+  display: block;
+  clip-path: inset(-10% -5% 0% -5%);
+}
+body.chess-v3 .services--v2 .services-v2__title .q {
+  color: var(--c-blue);
+  margin-left: -0.05em;
+}
+
+/* Intro editorial */
+body.chess-v3 .services--v2 .services-v2__intro {
+  font-family: var(--ff-body);
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--c-ink-70);
+  max-width: 58ch;
+  margin: 0 0 clamp(3rem, 6vh, 5rem);
+}
+body.chess-v3 .services--v2 .services-v2__intro em {
+  font-style: normal;
+  color: #fff;
+  font-weight: 700;
+  border-bottom: 2px solid var(--c-blue);
+  padding: 0 0.05em;
+}
+
+/* Grid */
+body.chess-v3 .services--v2 .services-v2__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 1.5vw, 1.5rem);
+}
+@media (max-width: 991px) {
+  body.chess-v3 .services--v2 .services-v2__grid { grid-template-columns: 1fr; }
+}
+
+/* Card */
+body.chess-v3 .services--v2 .services-v2__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: clamp(1.5rem, 2vw, 2.25rem);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
+  border: 1px solid var(--c-ink-10);
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 460px;
+  isolation: isolate;
+  transition: border-color 0.4s var(--ease), background 0.4s var(--ease), transform 0.5s var(--ease);
+}
+
+/* Fondo hover: capa azul que se desliza */
+body.chess-v3 .services--v2 .services-v2__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--c-blue);
+  transform: translateY(101%);
+  transition: transform 0.6s var(--ease);
+  z-index: -1;
+}
+body.chess-v3 .services--v2 .services-v2__card:hover {
+  border-color: transparent;
+  transform: translateY(-4px);
+}
+body.chess-v3 .services--v2 .services-v2__card:hover::before {
+  transform: translateY(0);
+}
+
+/* Card head */
+body.chess-v3 .services--v2 .services-v2__card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+body.chess-v3 .services--v2 .services-v2__card-num {
+  font-family: var(--ff-display);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  letter-spacing: 0;
+  color: var(--c-blue);
+  line-height: 1;
+  transition: color 0.4s var(--ease);
+}
+body.chess-v3 .services--v2 .services-v2__card:hover .services-v2__card-num {
+  color: #fff;
+}
+body.chess-v3 .services--v2 .services-v2__card-tag {
+  color: var(--c-ink-50);
+  font-weight: 600;
+  transition: color 0.4s var(--ease);
+}
+body.chess-v3 .services--v2 .services-v2__card:hover .services-v2__card-tag {
+  color: rgba(255,255,255,0.95);
+}
+
+/* Visual: imagen centrada */
+body.chess-v3 .services--v2 .services-v2__card-visual {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+  min-height: 140px;
+}
+body.chess-v3 .services--v2 .services-v2__card-visual img {
+  max-width: 70%;
+  max-height: 180px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.4));
+  transition: transform 0.6s var(--ease), filter 0.6s var(--ease);
+}
+body.chess-v3 .services--v2 .services-v2__card:hover .services-v2__card-visual img {
+  transform: scale(1.08) translateY(-6px);
+  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.5));
+}
+
+/* Body */
+body.chess-v3 .services--v2 .services-v2__card-title {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0 0 0.75rem;
+  transition: color 0.4s var(--ease);
+}
+body.chess-v3 .services--v2 .services-v2__card:hover .services-v2__card-title {
+  color: #fff;
+}
+body.chess-v3 .services--v2 .services-v2__card-desc {
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--c-ink-70);
+  margin: 0;
+  transition: color 0.4s var(--ease);
+}
+body.chess-v3 .services--v2 .services-v2__card:hover .services-v2__card-desc {
+  color: rgba(255,255,255,0.92);
+}
+
+/* CTA bottom */
+body.chess-v3 .services--v2 .services-v2__card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--c-ink-10);
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-ink-70);
+  transition: color 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+body.chess-v3 .services--v2 .services-v2__card-cta i {
+  transition: transform 0.4s var(--ease);
+}
+body.chess-v3 .services--v2 .services-v2__card:hover .services-v2__card-cta {
+  color: #fff;
+  border-top-color: rgba(255,255,255,0.35);
+}
+body.chess-v3 .services--v2 .services-v2__card:hover .services-v2__card-cta i {
+  transform: translateX(6px);
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+  body.chess-v3 .services--v2 .services-v2__card {
+    min-height: 360px;
+  }
+}
+
+/* ==========================================================================
+   PORTFOLIO v2 — Bento editorial grid + rich hover
+   ========================================================================== */
+body.chess-v3 .portfolio--v2 {
+  position: relative;
+  background: var(--c-black);
+  color: #fff;
+  padding: clamp(5rem, 10vh, 8rem) 0 clamp(4rem, 8vh, 6rem);
+  overflow: hidden;
+}
+
+body.chess-v3 .portfolio--v2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(to right,
+      rgba(255,255,255,0.035) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(to bottom,
+      rgba(255,255,255,0.035) 0 1px, transparent 1px 120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body.chess-v3 .portfolio--v2 .portfolio-v2__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+}
+
+body.chess-v3 .portfolio--v2 .portfolio-v2__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(2rem, 4vh, 3rem);
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-ink-50);
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__num { font-weight: 700; color: var(--c-blue); }
+body.chess-v3 .portfolio--v2 .portfolio-v2__divider { flex: 0 0 40px; height: 1px; background: var(--c-ink-30); }
+
+body.chess-v3 .portfolio--v2 .portfolio-v2__title {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 8vw, 8rem);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.5rem;
+  color: #fff;
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__title .line {
+  display: block;
+  clip-path: inset(-10% -5% 0% -5%);
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__title .q { color: var(--c-blue); }
+
+body.chess-v3 .portfolio--v2 .portfolio-v2__intro {
+  font-family: var(--ff-body);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--c-ink-70);
+  max-width: 58ch;
+  margin: 0 0 clamp(3rem, 6vh, 5rem);
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__intro em {
+  font-style: normal;
+  color: #fff;
+  font-weight: 700;
+  border-bottom: 2px solid var(--c-blue);
+  padding: 0 0.05em;
+}
+
+/* Bento grid — 12-col asimétrico, height-based spans */
+body.chess-v3 .portfolio--v2 .portfolio-v2__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-rows: clamp(130px, 16vw, 210px);
+  grid-auto-flow: dense;
+  gap: clamp(0.75rem, 1.2vw, 1.25rem);
+  width: 100%;
+  margin: 0 auto;
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__item {
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0a;
+  border: 1px solid var(--c-ink-10);
+  cursor: pointer;
+  isolation: isolate;
+  transition: border-color 0.4s var(--ease);
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Bento spans — cada item con su tamaño (col + row) */
+body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(1) { grid-column: span 7; grid-row: span 2; } /* Teve — big hero */
+body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(2) { grid-column: span 5; grid-row: span 2; } /* Jack D — tall */
+body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(3) { grid-column: span 4; grid-row: span 2; } /* Spiritu */
+body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(4) { grid-column: span 4; grid-row: span 1; } /* Swell */
+body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(5) { grid-column: span 4; grid-row: span 1; } /* Juli */
+body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(6) { grid-column: span 8; grid-row: span 2; } /* Reebok — big wide */
+body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(7) { grid-column: span 4; grid-row: span 2; } /* Atalaya */
+body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(8) { grid-column: span 4; grid-row: span 1; } /* La Poda */
+body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(9) { grid-column: span 8; grid-row: span 2; } /* Casual — wide */
+
+/* Tablet */
+@media (max-width: 991px) {
+  body.chess-v3 .portfolio--v2 .portfolio-v2__grid {
+    grid-auto-rows: clamp(140px, 22vw, 200px);
+  }
+  body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(1),
+  body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(6),
+  body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(9) { grid-column: span 12; grid-row: span 2; }
+  body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(2),
+  body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(3),
+  body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(4),
+  body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(5),
+  body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(7),
+  body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(8) { grid-column: span 6; grid-row: span 2; }
+}
+
+/* Mobile */
+@media (max-width: 599px) {
+  body.chess-v3 .portfolio--v2 .portfolio-v2__grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+  }
+  body.chess-v3 .portfolio--v2 .portfolio-v2__item,
+  body.chess-v3 .portfolio--v2 .portfolio-v2__item:nth-child(n) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.1) brightness(0.92);
+  transition: transform 0.8s var(--ease), filter 0.6s var(--ease);
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__item:hover .portfolio-v2__frame img {
+  transform: scale(1.06);
+  filter: grayscale(0) brightness(0.55);
+}
+
+/* Info bar (siempre visible) */
+body.chess-v3 .portfolio--v2 .portfolio-v2__info {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #fff;
+  z-index: 2;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__num-tag {
+  color: var(--c-blue);
+  background: #000;
+  padding: 0.3em 0.55em;
+  text-shadow: none;
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__cat {
+  color: rgba(255,255,255,0.8);
+}
+
+/* Name — grande, siempre visible en bottom */
+body.chess-v3 .portfolio--v2 .portfolio-v2__name {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 2.2vw, 2.25rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.7);
+  z-index: 3;
+  transform: translateY(0);
+  transition: transform 0.5s var(--ease);
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__item.is-feature .portfolio-v2__name {
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__item:hover .portfolio-v2__name {
+  transform: translateY(-32px);
+}
+
+/* "Ver proyecto" cue — slides up on hover */
+body.chess-v3 .portfolio--v2 .portfolio-v2__view {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-blue);
+  background: #fff;
+  padding: 0.5rem 0.85rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+  z-index: 4;
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__item:hover .portfolio-v2__view {
+  opacity: 1;
+  transform: translateY(0);
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__view i {
+  transition: transform 0.3s var(--ease);
+}
+body.chess-v3 .portfolio--v2 .portfolio-v2__item:hover .portfolio-v2__view i {
+  transform: translate(3px, -3px);
+}
+
+/* ==========================================================================
+   CLIENTES v2
+   ========================================================================== */
+body.chess-v3 .clientes--v2 {
+  position: relative;
+  background: var(--c-black);
+  color: #fff;
+  padding: clamp(4rem, 8vh, 6rem) 0 clamp(5rem, 10vh, 8rem);
+  overflow: hidden;
+}
+body.chess-v3 .clientes--v2 .clientes-v2__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+}
+body.chess-v3 .clientes--v2 .clientes-v2__head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-ink-50);
+}
+body.chess-v3 .clientes--v2 .clientes-v2__num { font-weight: 700; color: var(--c-blue); }
+body.chess-v3 .clientes--v2 .clientes-v2__divider { flex: 0 0 40px; height: 1px; background: var(--c-ink-30); }
+body.chess-v3 .clientes--v2 .clientes-v2__title {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  margin: 0 0 clamp(2rem, 4vh, 3rem);
+  color: #fff;
+}
+body.chess-v3 .clientes--v2 .clientes-v2__title .line {
+  display: block;
+  clip-path: inset(-10% -5% 0% -5%);
+}
+body.chess-v3 .clientes--v2 .clientes-v2__title .q { color: var(--c-blue); }
+
+body.chess-v3 .clientes--v2 .clientes-v2__wall {
+  padding: 2.5rem clamp(1rem, 3vw, 3rem);
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border: 1px solid var(--c-ink-10);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body.chess-v3 .clientes--v2 .clientes-v2__wall img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0.95) contrast(1.05);
+}
+
+/* ==========================================================================
+   FOOTER v2 — Editorial close / contact block
+   ========================================================================== */
+body.chess-v3 .footer--v2 {
+  position: relative;
+  background: var(--c-black);
+  color: #fff;
+  padding: clamp(5rem, 10vh, 9rem) 0 clamp(2rem, 4vh, 3rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+body.chess-v3 .footer--v2 .footer-v2__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(to right,
+      rgba(255,255,255,0.035) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(to bottom,
+      rgba(255,255,255,0.035) 0 1px, transparent 1px 120px),
+    radial-gradient(ellipse at 80% 20%,
+      rgba(30, 50, 245, 0.12) 0%,
+      transparent 50%);
+}
+
+body.chess-v3 .footer--v2 .footer-v2__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+}
+
+body.chess-v3 .footer--v2 .footer-v2__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(2rem, 4vh, 3rem);
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-ink-50);
+}
+body.chess-v3 .footer--v2 .footer-v2__num { font-weight: 700; color: var(--c-blue); }
+body.chess-v3 .footer--v2 .footer-v2__divider { flex: 0 0 40px; height: 1px; background: var(--c-ink-30); }
+
+body.chess-v3 .footer--v2 .footer-v2__title {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 8.5vw, 9rem);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  margin: 0 0 clamp(3rem, 6vh, 5rem);
+  color: #fff;
+}
+body.chess-v3 .footer--v2 .footer-v2__title .line {
+  display: block;
+  clip-path: inset(-10% -5% 0% -5%);
+}
+body.chess-v3 .footer--v2 .footer-v2__title .q { color: var(--c-blue); }
+
+/* Grid: form + aside */
+body.chess-v3 .footer--v2 .footer-v2__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  margin-bottom: clamp(4rem, 8vh, 6rem);
+}
+@media (max-width: 991px) {
+  body.chess-v3 .footer--v2 .footer-v2__grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+/* FORM */
+body.chess-v3 .footer--v2 .footer-v2__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+body.chess-v3 .footer--v2 .footer-v2__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+body.chess-v3 .footer--v2 .footer-v2__field-label {
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--c-ink-50);
+}
+body.chess-v3 .footer--v2 .footer-v2__field input,
+body.chess-v3 .footer--v2 .footer-v2__field textarea {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--c-ink-30);
+  padding: 0.75rem 0;
+  font-family: var(--ff-body);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  color: #fff;
+  transition: border-color 0.3s var(--ease);
+  outline: none;
+  resize: none;
+}
+body.chess-v3 .footer--v2 .footer-v2__field input::placeholder,
+body.chess-v3 .footer--v2 .footer-v2__field textarea::placeholder {
+  color: var(--c-ink-30);
+}
+body.chess-v3 .footer--v2 .footer-v2__field input:focus,
+body.chess-v3 .footer--v2 .footer-v2__field textarea:focus,
+body.chess-v3 .footer--v2 .footer-v2__field input:hover,
+body.chess-v3 .footer--v2 .footer-v2__field textarea:hover {
+  border-bottom-color: var(--c-blue);
+}
+
+body.chess-v3 .footer--v2 .footer-v2__form-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+body.chess-v3 .footer--v2 .footer-v2__submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.1rem 2rem;
+  background: var(--c-blue);
+  color: #fff;
+  border: 1.5px solid var(--c-blue);
+  font-family: var(--ff-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+body.chess-v3 .footer--v2 .footer-v2__submit:hover {
+  background: #fff;
+  color: var(--c-blue);
+}
+body.chess-v3 .footer--v2 .footer-v2__submit i {
+  transition: transform 0.3s var(--ease);
+}
+body.chess-v3 .footer--v2 .footer-v2__submit:hover i {
+  transform: translateX(4px);
+}
+body.chess-v3 .footer--v2 .footer-v2__form-ok {
+  color: var(--c-blue);
+  font-family: var(--ff-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+/* ASIDE */
+body.chess-v3 .footer--v2 .footer-v2__aside {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+body.chess-v3 .footer--v2 .footer-v2__card {
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--c-ink-10);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+body.chess-v3 .footer--v2 .footer-v2__card:hover {
+  border-color: var(--c-blue);
+}
+body.chess-v3 .footer--v2 .footer-v2__card-tag {
+  display: block;
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-ink-50);
+  margin-bottom: 0.5rem;
+}
+body.chess-v3 .footer--v2 .footer-v2__card-value {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s var(--ease);
+  word-break: break-word;
+}
+body.chess-v3 .footer--v2 a.footer-v2__card-value:hover { color: var(--c-blue); }
+
+body.chess-v3 .footer--v2 .footer-v2__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+body.chess-v3 .footer--v2 .footer-v2__social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--c-ink-10);
+  color: #fff;
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+body.chess-v3 .footer--v2 .footer-v2__social a:hover {
+  background: var(--c-blue);
+  color: #fff;
+  border-color: var(--c-blue);
+}
+body.chess-v3 .footer--v2 .footer-v2__social i { font-size: 1rem; }
+
+/* Mascot: abajo del aside como signature, SIN overlap con los botones */
+body.chess-v3 .footer--v2 .footer-v2__mascot {
+  position: static;
+  align-self: flex-end;
+  width: clamp(90px, 9vw, 130px);
+  height: auto;
+  margin-top: 0.5rem;
+  margin-right: -0.5rem;
+  opacity: 0.95;
+  filter: drop-shadow(0 18px 26px rgba(0,0,0,0.5));
+  pointer-events: none;
+  transform: rotate(-3deg);
+  transition: transform 0.5s var(--ease);
+}
+body.chess-v3 .footer--v2 .footer-v2__aside:hover .footer-v2__mascot {
+  transform: rotate(2deg) translateY(-6px);
+}
+@media (max-width: 767px) {
+  body.chess-v3 .footer--v2 .footer-v2__mascot {
+    align-self: center;
+    width: 110px;
+    margin-right: 0;
+  }
+}
+
+/* Bottom bar */
+body.chess-v3 .footer--v2 .footer-v2__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--c-ink-10);
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-ink-50);
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+body.chess-v3 .footer--v2 .footer-v2__bottom-left,
+body.chess-v3 .footer--v2 .footer-v2__bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+body.chess-v3 .footer--v2 .footer-v2__logo {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: 0;
+  color: #fff;
+}
+body.chess-v3 .footer--v2 .footer-v2__tagline {
+  color: var(--c-ink-70);
+}
+body.chess-v3 .footer--v2 .footer-v2__sep { color: var(--c-blue); }
+
+@media (max-width: 767px) {
+  body.chess-v3 .footer--v2 .footer-v2__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+/* ==========================================================================
+   DETAIL PAGES v2 — produccion-eventos, produccion-audiovisual, influencer-mkt
+   Override editorial que mantiene el markup existente intacto.
+   ========================================================================== */
+body.chess-v3 #produccion-eventos,
+body.chess-v3 #produccion-audiovisual,
+body.chess-v3 #influencer-mkt {
+  background: var(--c-black) !important;
+  color: #fff !important;
+  padding: clamp(4rem, 8vh, 7rem) 0 clamp(4rem, 8vh, 6rem) !important;
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+}
+
+/* Grid de fondo sutil */
+body.chess-v3 #produccion-eventos::before,
+body.chess-v3 #produccion-audiovisual::before,
+body.chess-v3 #influencer-mkt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(to right,
+      rgba(255,255,255,0.035) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(to bottom,
+      rgba(255,255,255,0.035) 0 1px, transparent 1px 120px);
+}
+
+body.chess-v3 #produccion-eventos > *,
+body.chess-v3 #produccion-audiovisual > *,
+body.chess-v3 #influencer-mkt > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header block */
+body.chess-v3 .produccion-header {
+  max-width: 1440px;
+  margin: 0 auto clamp(3rem, 6vh, 5rem);
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+  position: relative;
+}
+
+/* Back button — cuadrado editorial */
+body.chess-v3 .produccion-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  color: #fff !important;
+  border: 1px solid var(--c-ink-30) !important;
+  border-radius: 0 !important;
+  font-family: var(--ff-mono) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: clamp(2rem, 4vh, 3rem);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+  width: auto !important;
+  height: auto !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+}
+body.chess-v3 .produccion-back::after {
+  content: 'VOLVER';
+  display: inline-block;
+  letter-spacing: inherit;
+}
+body.chess-v3 .produccion-back i {
+  font-size: 0.9rem;
+  transition: transform 0.3s var(--ease);
+}
+body.chess-v3 .produccion-back:hover {
+  background: var(--c-blue);
+  color: #fff !important;
+  border-color: var(--c-blue) !important;
+}
+body.chess-v3 .produccion-back:hover i { transform: translateX(-4px); }
+
+/* Header content layout */
+body.chess-v3 .produccion-header-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+@media (max-width: 991px) {
+  body.chess-v3 .produccion-header-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Title block */
+body.chess-v3 .eventos-title-block,
+body.chess-v3 .audiovisual-title-block,
+body.chess-v3 .influencer-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+/* Icon order: antes del título */
+body.chess-v3 .produccion-logo-block { order: -1; }
+@media (max-width: 599px) {
+  body.chess-v3 .eventos-title-block,
+  body.chess-v3 .audiovisual-title-block,
+  body.chess-v3 .influencer-title-block { flex-wrap: wrap; }
+}
+
+body.chess-v3 .eventos-title,
+body.chess-v3 .audiovisual-title,
+body.chess-v3 .influencer-title,
+body.chess-v3 .produccion-title {
+  font-family: var(--ff-display) !important;
+  font-weight: 800 !important;
+  font-size: clamp(2.2rem, 4.5vw, 4.5rem) !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.01em !important;
+  color: #fff !important;
+  margin: 0 !important;
+  text-shadow: 0 8px 40px rgba(0,0,0,0.5) !important;
+}
+body.chess-v3 .eventos-title span,
+body.chess-v3 .audiovisual-title span,
+body.chess-v3 .influencer-title span,
+body.chess-v3 .produccion-title span {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+/* Staircase overrides: flush left, sin negative margin-bottom */
+body.chess-v3 .eventos-title span:first-child,
+body.chess-v3 .audiovisual-title span:first-child,
+body.chess-v3 .influencer-title span:first-child,
+body.chess-v3 .produccion-title span:first-child {
+  margin-bottom: 0 !important;
+}
+body.chess-v3 .eventos-title span:last-child,
+body.chess-v3 .audiovisual-title span:last-child,
+body.chess-v3 .influencer-title span:last-child,
+body.chess-v3 .produccion-title span:last-child {
+  margin-left: 0 !important;
+}
+
+/* Icon block */
+body.chess-v3 .produccion-logo-block {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  background: var(--c-blue);
+  border: none;
+  flex: 0 0 auto;
+  margin: 0 !important;
+  box-shadow: 0 8px 20px -5px rgba(30, 50, 245, 0.5);
+}
+body.chess-v3 .produccion-icon {
+  width: clamp(44px, 4.5vw, 66px) !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+/* Description */
+body.chess-v3 .produccion-desc {
+  padding-left: 0;
+}
+body.chess-v3 .produccion-desc h3 {
+  font-family: var(--ff-display) !important;
+  font-weight: 800 !important;
+  font-size: clamp(1.1rem, 1.6vw, 1.6rem) !important;
+  line-height: 1.2 !important;
+  color: #fff !important;
+  margin: 0 0 1rem !important;
+  letter-spacing: -0.005em !important;
+  text-transform: none !important;
+}
+body.chess-v3 .produccion-desc p {
+  font-family: var(--ff-body) !important;
+  font-size: clamp(0.9rem, 1.05vw, 1.05rem) !important;
+  line-height: 1.65 !important;
+  color: var(--c-ink-70) !important;
+  margin: 0 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+body.chess-v3 .produccion-desc p + p { margin-top: 1rem !important; }
+body.chess-v3 .produccion-desc p b,
+body.chess-v3 .produccion-desc p strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   DETAIL PAGES — Gallery titles (solo tipografía, sin tocar layout)
+   ========================================================================== */
+body.chess-v3 .gallery-title-overlay-l h2,
+body.chess-v3 .gallery-title-overlay-c h2,
+body.chess-v3 .gallery-title-overlay-r h2 {
+  font-family: 'Pricedown', 'Anton', 'Archivo Black', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: clamp(1.8rem, 4vw, 3.5rem) !important;
+  line-height: 0.9 !important;
+  letter-spacing: -0.01em !important;
+  color: #fff !important;
+  margin: 0 !important;
+  text-shadow: 0 6px 28px rgba(0,0,0,0.85), 10px 10px 20px rgba(0,0,0,0.7) !important;
+}
+
+/* Acento azul con guión editorial — solo visible como adorno, posicionado inline */
+body.chess-v3 .gallery-title-overlay-l h2::before,
+body.chess-v3 .gallery-title-overlay-c h2::before,
+body.chess-v3 .gallery-title-overlay-r h2::before {
+  content: '— ';
+  color: var(--c-blue);
+  font-family: 'Roboto', ui-monospace, monospace;
+  font-size: 0.55em;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin-right: 0.35rem;
+  vertical-align: middle;
+}
+
+
+/* ==========================================================================
+   DETAIL PAGES — fixes finales: transform/br overrides
+   ========================================================================== */
+body.chess-v3 .produccion-back {
+  transform: none !important;
+}
+
+/* Ocultar <br> dentro de los títulos — los spans block ya saltan línea */
+body.chess-v3 .eventos-title br,
+body.chess-v3 .audiovisual-title br,
+body.chess-v3 .influencer-title br,
+body.chess-v3 .produccion-title br {
+  display: none !important;
+}
+
+/* line-height más compacto entre los dos spans */
+body.chess-v3 .eventos-title,
+body.chess-v3 .audiovisual-title,
+body.chess-v3 .influencer-title {
+  line-height: 0.95 !important;
+}
+body.chess-v3 .eventos-title span + span,
+body.chess-v3 .audiovisual-title span + span,
+body.chess-v3 .influencer-title span + span,
+body.chess-v3 .produccion-title span + span {
+  margin-top: -0.05em !important;
+}
+
+/* ==========================================================================
+   GALLERY BENTO OVERRIDES — detail pages (Eventos / Audiovisual / Influencer)
+   Replaces legacy blur-directional row system with a 12-col asymmetric grid.
+   Scoped to body.chess-v3. Append-only.
+   ========================================================================== */
+
+body.chess-v3 .eventos-row,
+body.chess-v3 .audiovisual-row,
+body.chess-v3 .influencer-row,
+body.chess-v3 .eventos-row-3 {
+  display: grid !important;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.2vw, 1.25rem);
+  width: 100% !important;
+  max-width: 100%;
+  min-height: unset !important;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+  margin: 0 auto;
+  position: relative;
+}
+
+body.chess-v3 .eventos-row + .eventos-row,
+body.chess-v3 .eventos-row + .eventos-row-3,
+body.chess-v3 .eventos-row-3 + .eventos-row,
+body.chess-v3 .eventos-row-3 + .eventos-row-3,
+body.chess-v3 .audiovisual-row + .audiovisual-row,
+body.chess-v3 .influencer-row + .influencer-row {
+  margin-top: clamp(2rem, 5vh, 4rem);
+}
+
+body.chess-v3 .eventos-row .img-wrapper,
+body.chess-v3 .audiovisual-row .img-wrapper,
+body.chess-v3 .influencer-row .img-wrapper,
+body.chess-v3 .eventos-row-3 .img-wrapper {
+  width: auto !important;
+  min-height: unset !important;
+  height: auto !important;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--c-ink-10);
+  background: #0a0a0a;
+  border-radius: 4px;
+  aspect-ratio: 4 / 3;
+  transition: border-color 320ms var(--ease);
+}
+
+body.chess-v3 .img-wrapper.img-30 { grid-column: span 4; }
+body.chess-v3 .img-wrapper.img-33 { grid-column: span 4; }
+body.chess-v3 .img-wrapper.img-50 { grid-column: span 6; }
+body.chess-v3 .img-wrapper.img-70 { grid-column: span 8; aspect-ratio: 16 / 9; }
+body.chess-v3 .img-wrapper.img-100 { grid-column: span 12; aspect-ratio: 16 / 9; }
+body.chess-v3 .eventos-row-3 .img-wrapper { grid-column: span 4; }
+
+body.chess-v3 .img-wrapper.blur-left,
+body.chess-v3 .img-wrapper.blur-right,
+body.chess-v3 .img-wrapper.blur-center,
+body.chess-v3 .blur-left .eventos-img,
+body.chess-v3 .blur-right .eventos-img,
+body.chess-v3 .blur-center .eventos-img,
+body.chess-v3 .blur-left .audiovisual-img,
+body.chess-v3 .blur-right .audiovisual-img,
+body.chess-v3 .blur-center .audiovisual-img,
+body.chess-v3 .blur-left .influencer-img,
+body.chess-v3 .blur-right .influencer-img,
+body.chess-v3 .blur-center .influencer-img {
+  filter: none !important;
+  -webkit-filter: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+body.chess-v3 .eventos-img,
+body.chess-v3 .audiovisual-img,
+body.chess-v3 .influencer-img {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: unset !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  display: block;
+  filter: grayscale(0.1) brightness(0.9);
+  transform: scale(1);
+  transition: transform 520ms var(--ease), filter 520ms var(--ease);
+}
+
+body.chess-v3 .img-wrapper:hover {
+  border-color: var(--c-blue);
+}
+body.chess-v3 .img-wrapper:hover .eventos-img,
+body.chess-v3 .img-wrapper:hover .audiovisual-img,
+body.chess-v3 .img-wrapper:hover .influencer-img {
+  transform: scale(1.04);
+  filter: grayscale(0) brightness(1.05);
+}
+
+body.chess-v3 .gallery-title-overlay-l,
+body.chess-v3 .gallery-title-overlay-c,
+body.chess-v3 .gallery-title-overlay-r {
+  z-index: 3;
+  pointer-events: none;
+}
+
+@media (max-width: 991px) {
+  body.chess-v3 .eventos-row .img-wrapper,
+  body.chess-v3 .audiovisual-row .img-wrapper,
+  body.chess-v3 .influencer-row .img-wrapper,
+  body.chess-v3 .eventos-row-3 .img-wrapper,
+  body.chess-v3 .img-wrapper.img-30,
+  body.chess-v3 .img-wrapper.img-33,
+  body.chess-v3 .img-wrapper.img-50,
+  body.chess-v3 .img-wrapper.img-70 {
+    grid-column: span 6;
+  }
+  body.chess-v3 .img-wrapper.img-100 { grid-column: span 12; }
+}
+
+@media (max-width: 600px) {
+  body.chess-v3 .eventos-row,
+  body.chess-v3 .audiovisual-row,
+  body.chess-v3 .influencer-row,
+  body.chess-v3 .eventos-row-3 {
+    padding: 0 clamp(0.75rem, 4vw, 1.25rem);
+  }
+  body.chess-v3 .eventos-row .img-wrapper,
+  body.chess-v3 .audiovisual-row .img-wrapper,
+  body.chess-v3 .influencer-row .img-wrapper,
+  body.chess-v3 .eventos-row-3 .img-wrapper,
+  body.chess-v3 .img-wrapper.img-30,
+  body.chess-v3 .img-wrapper.img-33,
+  body.chess-v3 .img-wrapper.img-50,
+  body.chess-v3 .img-wrapper.img-70,
+  body.chess-v3 .img-wrapper.img-100 {
+    grid-column: span 12;
+  }
+}
+
+/* Form error state (Web3Forms) */
+body.chess-v3 .footer--v2 .footer-v2__form-ok.is-error { color: #ff5a5a; }
+
+/* Accessibility: skip link */
+body.chess-v3 .skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--c-blue);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  z-index: 10000;
+  transform: translateY(-120%);
+  transition: transform 0.25s ease;
+}
+body.chess-v3 .skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+
+/* ==========================================================================
+   DETAIL PAGES — missing img-XX spans (img-25, img-40, img-60)
+   ========================================================================== */
+body.chess-v3 .eventos-row .img-wrapper.img-25,
+body.chess-v3 .audiovisual-row .img-wrapper.img-25,
+body.chess-v3 .influencer-row .img-wrapper.img-25 { grid-column: span 3 !important; }
+
+body.chess-v3 .eventos-row .img-wrapper.img-40,
+body.chess-v3 .audiovisual-row .img-wrapper.img-40,
+body.chess-v3 .influencer-row .img-wrapper.img-40 { grid-column: span 5 !important; }
+
+body.chess-v3 .eventos-row .img-wrapper.img-60,
+body.chess-v3 .audiovisual-row .img-wrapper.img-60,
+body.chess-v3 .influencer-row .img-wrapper.img-60 { grid-column: span 7 !important; }
+
+@media (max-width: 991px) {
+  body.chess-v3 .eventos-row .img-wrapper.img-25,
+  body.chess-v3 .eventos-row .img-wrapper.img-40,
+  body.chess-v3 .eventos-row .img-wrapper.img-60,
+  body.chess-v3 .audiovisual-row .img-wrapper.img-25,
+  body.chess-v3 .audiovisual-row .img-wrapper.img-40,
+  body.chess-v3 .audiovisual-row .img-wrapper.img-60,
+  body.chess-v3 .influencer-row .img-wrapper.img-25,
+  body.chess-v3 .influencer-row .img-wrapper.img-40,
+  body.chess-v3 .influencer-row .img-wrapper.img-60 { grid-column: span 6 !important; }
+}
+@media (max-width: 599px) {
+  body.chess-v3 .eventos-row .img-wrapper.img-25,
+  body.chess-v3 .eventos-row .img-wrapper.img-40,
+  body.chess-v3 .eventos-row .img-wrapper.img-60,
+  body.chess-v3 .audiovisual-row .img-wrapper.img-25,
+  body.chess-v3 .audiovisual-row .img-wrapper.img-40,
+  body.chess-v3 .audiovisual-row .img-wrapper.img-60,
+  body.chess-v3 .influencer-row .img-wrapper.img-25,
+  body.chess-v3 .influencer-row .img-wrapper.img-40,
+  body.chess-v3 .influencer-row .img-wrapper.img-60 { grid-column: span 12 !important; }
+}
+
+/* ============ STATS BAND v2 ============ */
+body.chess-v3 .stats--v2{
+  position:relative;
+  background:var(--c-black);
+  color:var(--c-ink);
+  padding:clamp(80px,12vw,160px) clamp(20px,4vw,60px);
+  overflow:hidden;
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+body.chess-v3 .stats--v2::before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:calc(100%/12) 100%;
+  pointer-events:none;opacity:.5;
+}
+body.chess-v3 .stats-v2__inner{
+  max-width:1400px;margin:0 auto;position:relative;z-index:1;
+}
+body.chess-v3 .stats-v2__meta{
+  display:flex;align-items:center;gap:14px;
+  font-family:var(--ff-mono);font-size:11px;letter-spacing:.24em;
+  color:var(--c-ink-70);text-transform:uppercase;
+  margin-bottom:clamp(40px,6vw,80px);
+  opacity:0;
+}
+body.chess-v3 .stats-v2__num{color:var(--c-blue);font-weight:700;}
+body.chess-v3 .stats-v2__divider{
+  flex:0 0 48px;height:1px;background:var(--c-ink-30);
+}
+body.chess-v3 .stats-v2__grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;border-top:1px solid rgba(255,255,255,.08);
+}
+body.chess-v3 .stats-v2__cell{
+  position:relative;
+  padding:clamp(32px,5vw,64px) clamp(16px,2vw,28px);
+  border-right:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  display:flex;flex-direction:column;align-items:flex-start;
+  transition:background .5s var(--ease);
+}
+body.chess-v3 .stats-v2__cell:last-child{border-right:none;}
+body.chess-v3 .stats-v2__cell::after{
+  content:"";position:absolute;left:0;top:0;width:100%;height:2px;
+  background:var(--c-blue);transform:scaleX(0);transform-origin:left;
+  transition:transform .6s var(--ease);
+}
+body.chess-v3 .stats-v2__cell:hover{background:rgba(30,50,245,.04);}
+body.chess-v3 .stats-v2__cell:hover::after{transform:scaleX(1);}
+body.chess-v3 .stats-v2__plus{
+  font-family:var(--ff-display);
+  font-size:clamp(48px,7vw,96px);line-height:.85;
+  color:var(--c-blue);display:inline-block;vertical-align:top;
+  margin-right:4px;
+}
+body.chess-v3 .stats-v2__value{
+  font-family:var(--ff-display);
+  font-size:clamp(80px,14vw,200px);line-height:.85;
+  color:var(--c-ink);display:inline-block;
+  font-variant-numeric:tabular-nums;
+}
+body.chess-v3 .stats-v2__caption{
+  font-family:var(--ff-mono);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--c-ink-70);
+  margin-top:24px;line-height:1.5;
+}
+@media (max-width:991px){
+  body.chess-v3 .stats-v2__grid{grid-template-columns:repeat(2,1fr);}
+  body.chess-v3 .stats-v2__cell:nth-child(2){border-right:none;}
+  body.chess-v3 .stats-v2__cell:nth-child(3),
+  body.chess-v3 .stats-v2__cell:nth-child(4){border-bottom:none;}
+}
+@media (max-width:560px){
+  body.chess-v3 .stats-v2__grid{grid-template-columns:1fr;}
+  body.chess-v3 .stats-v2__cell{border-right:none !important;}
+}
+
+/* ============ MOBILE FIXES v2 ============ */
+@media (max-width: 767px){
+  /* Hero: unify CADA/MOVIMIENTO/CUENTA sizes, tighten stack */
+  body.chess-v3 .hero-heading{line-height:.95;}
+  body.chess-v3 .hero-heading .word,
+  body.chess-v3 .hero-heading .word--outline,
+  body.chess-v3 .hero-heading .word--fill{
+    font-size:clamp(48px, 14vw, 72px) !important;
+    line-height:.95 !important;
+    letter-spacing:-.01em;
+  }
+  body.chess-v3 .hero-heading .word--outline{-webkit-text-stroke-width:1.5px;}
+  body.chess-v3 .hero-sub{font-size:14px !important;line-height:1.55 !important;}
+  body.chess-v3 .hero-meta{font-size:10px !important;letter-spacing:.2em;}
+  body.chess-v3 .hero-ctas, body.chess-v3 .hero-cta{flex-direction:column;align-items:stretch;gap:12px;}
+  body.chess-v3 .hero-ctas a, body.chess-v3 .hero-cta a{width:100%;justify-content:center;}
+  body.chess-v3 .hero-marquee{font-size:clamp(28px, 9vw, 44px);}
+  body.chess-v3 .hero-scroll{font-size:10px;}
+
+  /* About */
+  body.chess-v3 .about-v2__title{
+    font-size:clamp(56px, 16vw, 88px) !important;
+    line-height:.9 !important;
+    letter-spacing:-.02em;
+    display:block !important;
+    width:100% !important;
+  }
+  body.chess-v3 .about-v2__head{flex-direction:column;align-items:flex-start;}
+  body.chess-v3 .about-v2__body{font-size:15px !important;line-height:1.6 !important;}
+  body.chess-v3 .about-v2__eyebrow{font-size:11px !important;}
+  body.chess-v3 .about-v2__meta{font-size:10px !important;}
+  body.chess-v3 .about-v2__closing{padding:60px 0 !important;}
+  body.chess-v3 .about-v2__cta-word,
+  body.chess-v3 .about-v2__jugamos{font-size:clamp(56px, 18vw, 112px) !important;line-height:.9 !important;}
+  body.chess-v3 .about-v2__film{gap:8px !important;}
+
+  /* Services */
+  body.chess-v3 .services-v2__meta{font-size:10px !important;}
+  body.chess-v3 .services-v2__title{font-size:clamp(44px, 13vw, 72px) !important;line-height:.95 !important;}
+  body.chess-v3 .services-v2__grid{grid-template-columns:1fr !important;gap:16px !important;}
+  body.chess-v3 .services-v2__card{padding:32px 24px !important;min-height:auto !important;}
+  body.chess-v3 .services-v2__card-title{font-size:28px !important;}
+  body.chess-v3 .services-v2__card-num{font-size:56px !important;}
+  body.chess-v3 .services-v2__card-desc{font-size:14px !important;}
+
+  /* Portfolio — force single column on mobile */
+  body.chess-v3 .portfolio-v2__grid{
+    grid-template-columns:1fr !important;
+    grid-auto-rows:auto !important;
+    gap:12px !important;
+  }
+  body.chess-v3 .portfolio-v2__item{
+    grid-column:1 / -1 !important;
+    grid-row:auto !important;
+    aspect-ratio:4/3;
+    min-height:220px;
+  }
+  body.chess-v3 .portfolio-v2__title{font-size:clamp(40px, 12vw, 64px) !important;line-height:.95 !important;}
+  body.chess-v3 .portfolio-v2__item-title{font-size:18px !important;}
+  body.chess-v3 .portfolio-v2__item-cat{font-size:10px !important;}
+
+  /* Clientes */
+  body.chess-v3 .clientes-v2__grid,
+  body.chess-v3 .clientes--v2 .clientes-v2__grid{
+    grid-template-columns:repeat(2, 1fr) !important;
+    gap:0 !important;
+  }
+  body.chess-v3 .clientes-v2__title, body.chess-v3 .clientes--v2 h2{font-size:clamp(40px, 12vw, 64px) !important;}
+  body.chess-v3 .clientes-v2__cell{padding:24px 12px !important;}
+
+  /* Footer */
+  body.chess-v3 .footer--v2{padding:60px 20px 40px !important;}
+  body.chess-v3 .footer-v2__title, body.chess-v3 .footer-v2 h2{font-size:clamp(44px, 14vw, 72px) !important;line-height:.95 !important;}
+  body.chess-v3 .footer-v2__grid{grid-template-columns:1fr !important;gap:32px !important;}
+  body.chess-v3 .footer-v2__form label, body.chess-v3 .footer-v2__form input, body.chess-v3 .footer-v2__form textarea{font-size:15px !important;}
+  body.chess-v3 .footer-v2__form input, body.chess-v3 .footer-v2__form textarea{padding:12px 0 !important;}
+  body.chess-v3 .footer-v2__form button[type="submit"]{width:100%;padding:18px !important;font-size:14px !important;}
+
+  /* Section paddings — reduce vertical whitespace on mobile */
+  body.chess-v3 #about,
+  body.chess-v3 #services,
+  body.chess-v3 #portfolio,
+  body.chess-v3 #clientes{
+    padding-top:64px !important;
+    padding-bottom:64px !important;
+    padding-left:20px !important;
+    padding-right:20px !important;
+  }
+
+  /* Prevent any horizontal overflow */
+  body.chess-v3{overflow-x:hidden;}
+  body.chess-v3 main{overflow-x:hidden;}
+
+  /* Touch target sizes */
+  body.chess-v3 a, body.chess-v3 button{min-height:44px;}
+  body.chess-v3 .hero-meta, body.chess-v3 .services-v2__meta, body.chess-v3 .about-v2__meta{min-height:auto;}
+
+  /* Skip link visible on focus — already handled, but ensure no overflow */
+  body.chess-v3 .skip-link:focus{left:8px;top:8px;}
+}
+
+@media (max-width: 420px){
+  body.chess-v3 .clientes-v2__grid,
+  body.chess-v3 .clientes--v2 .clientes-v2__grid{
+    grid-template-columns:repeat(2, 1fr) !important;
+  }
+  body.chess-v3 .hero-meta{flex-wrap:wrap;gap:6px;}
+}
