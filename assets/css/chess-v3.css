@@ -573,6 +573,8 @@ body.chess-v3 .hero--v2 .col-lg-5 {
   body.chess-v3 .hero--v2 .hero-sub,
   body.chess-v3 .hero--v2 .hero-cta,
   body.chess-v3 .hero--v2 .fluid-shape { animation: none !important; }
+  /* sin animación el estado base (clip 100%) dejaba el título invisible */
+  body.chess-v3 .hero--v2 .hero-heading .word { clip-path: none !important; transform: none !important; }
 }
 
 @media (max-width: 767px) {
