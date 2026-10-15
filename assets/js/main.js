@@ -400,7 +400,7 @@ form.addEventListener("submit", function(e) {
     from_name: form.name.value,
     from_email: form.email.value,
     message: form.message.value,
-    to_email: "camilaiarahess@gmail.com"
+    to_email: "produccioneschess@gmail.com"
   }).then(() => {
     formMessage.style.display = "block";
     form.reset();

@@ -823,10 +823,10 @@
           showMessage('✓ Mensaje enviado. Te respondemos en 24hs.', false);
           contactForm.reset();
         } else {
-          showMessage('✗ Error al enviar. Escribinos a camilaiarahess@gmail.com', true);
+          showMessage('✗ Error al enviar. Escribinos a produccioneschess@gmail.com', true);
         }
       } catch (err) {
-        showMessage('✗ Error al enviar. Escribinos a camilaiarahess@gmail.com', true);
+        showMessage('✗ Error al enviar. Escribinos a produccioneschess@gmail.com', true);
       }
     });
   }
